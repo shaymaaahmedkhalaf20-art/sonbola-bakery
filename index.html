@@ -111,6 +111,19 @@ section{padding:84px 0;position:relative}
 .vcard h3{color:var(--gold);font-size:1.4rem}
 .vcard .big{font-size:1.5rem;font-weight:700;margin-top:6px}
 .vcard .btn{margin-top:16px}
+/* contact form */
+.msg{background:var(--paper)}
+.msg-form{display:grid;gap:16px;margin-top:30px;max-width:620px;background:#fff;border-radius:28px;padding:28px 24px;box-shadow:0 18px 50px rgba(107,58,30,.14)}
+.field{display:grid;gap:6px;font-weight:700;color:var(--crust)}
+.field input,.field textarea{font:inherit;font-weight:600;color:var(--ink);background:var(--cream);border:2px solid #ecd9b8;border-radius:16px;padding:12px 16px;width:100%;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:0;border-color:var(--fire);box-shadow:0 0 0 4px rgba(226,102,31,.18)}
+.field input:user-invalid,.field textarea:user-invalid{border-color:#c0392b}
+.hp{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;overflow:hidden}
+.form-status{font-weight:700;min-height:1.8em}
+.form-status.ok{color:#2f7d32;font-size:1.2rem}
+.form-status.err{color:#c0392b}
+.msg-form .btn[disabled]{opacity:.6;cursor:wait}
 [hidden]{display:none!important}
 
 footer{background:#2a160a;color:#d8c2a4;text-align:center;padding:30px 16px 26px;font-size:.95rem}
@@ -244,6 +257,28 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
   </div>
 </section>
 
+<section class="msg" id="message">
+  <div class="wrap">
+    <span class="eyebrow rv">ابعتلنا رسالة</span>
+    <h2 class="title rv">عايز تطلب أو تسأل؟</h2>
+    <p class="lead rv">سيب بياناتك ورسالتك وهنكلّمك.</p>
+    <form class="msg-form rv" id="msgForm" novalidate>
+      <label class="field">الاسم
+        <input type="text" name="name" id="fName" required maxlength="80" autocomplete="name">
+      </label>
+      <label class="field">رقم الموبايل
+        <input type="tel" name="phone" id="fPhone" required inputmode="numeric" maxlength="11" pattern="01[0-9]{9}" placeholder="01012345678" autocomplete="tel" dir="ltr" style="text-align:right">
+      </label>
+      <label class="field">الرسالة
+        <textarea name="message" id="fMsg" required maxlength="1000"></textarea>
+      </label>
+      <label class="hp" aria-hidden="true">لا تملأ هذا الحقل <input type="text" id="fHp" tabindex="-1" autocomplete="off"></label>
+      <button class="btn btn-fire" type="submit" id="fBtn">إرسال</button>
+      <div class="form-status" id="fStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
 <footer>
   <b>مخبز السنبله</b><br>
   طعم العيش الطازة وجودة تقدر تثق فيها 🌾<br>
@@ -271,6 +306,50 @@ const PHONE = "";
   }
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.15});
   document.querySelectorAll(".rv").forEach(el => io.observe(el));
+})();
+</script>
+
+<script>
+/* إعدادات Supabase: الصق هنا Project URL والمفتاح الـ publishable فقط (sb_publishable_...). ممنوع تحط المفتاح الـ secret هنا أبدًا. */
+const SUPABASE_URL = "https://uduqpiavuxuwqmmvlnrw.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-iNZSPrC93Dc1kCSE3tQ6w_Dy2xlzht";
+
+(function(){
+  const form = document.getElementById("msgForm");
+  const btn = document.getElementById("fBtn");
+  const st = document.getElementById("fStatus");
+  const say = (t, c) => { st.textContent = t; st.className = "form-status " + (c || ""); };
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = form.fName.value.trim();
+    const phone = form.fPhone.value.trim();
+    const message = form.fMsg.value.trim();
+    if(!name || !phone || !message){ say("كل الخانات مطلوبة.", "err"); return; }
+    if(!/^01\d{9}$/.test(phone)){ say("اكتب رقم موبايل مصري صحيح (11 رقم).", "err"); return; }
+    if(form.fHp.value){ say("وصلتنا رسالتك، هنكلّمك في نفس اليوم.", "ok"); form.reset(); return; }
+    if(!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY){ say("الفورم لسه متوصّلش بقاعدة البيانات.", "err"); return; }
+
+    btn.disabled = true; say("بنبعت رسالتك…");
+    try{
+      const r = await fetch(SUPABASE_URL.replace(/\/$/, "") + "/rest/v1/messages", {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_PUBLISHABLE_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({ name, phone, message })
+      });
+      if(!r.ok) throw new Error(r.status);
+      form.reset();
+      say("وصلتنا رسالتك، هنكلّمك في نفس اليوم.", "ok");
+    }catch(err){
+      say("حصلت مشكلة في الإرسال، جرّب تاني بعد شوية.", "err");
+    }finally{
+      btn.disabled = false;
+    }
+  });
 })();
 </script>
 </body>
