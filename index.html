@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مخبز السنبله — طعم العيش الطازة</title>
+<meta name="description" content="مخبز السنبله: مخبوزات طازة كل يوم بكل حب واهتمام. بورفؤاد، أمام كلية التجارة. من 7 ص ل 12 مساءً.">
+<meta name="theme-color" content="#6b3a1e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fbf3e4; --paper:#fff9ee; --wheat:#d9993f; --gold:#f0c36b;
+  --crust:#6b3a1e; --deep:#3b1f0f; --fire:#e2661f; --ink:#3a2414;
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Cairo",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.8;overflow-x:hidden;padding-bottom:76px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:"Reem Kufi","Cairo",sans-serif;line-height:1.3}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;color:#fff;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url(images/bread-basket.jpg) center/cover;transform:scale(1.05);animation:zoom 18s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(59,31,15,.55) 0%,rgba(59,31,15,.25) 35%,rgba(59,31,15,.92) 100%)}
+@keyframes zoom{to{transform:scale(1.15)}}
+.hero-inner{padding:90px 0 64px}
+.badge{display:inline-flex;gap:8px;align-items:center;background:rgba(255,249,238,.16);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);padding:6px 16px;border-radius:99px;font-weight:600;font-size:.95rem}
+.hero h1{font-size:clamp(3rem,13vw,6.5rem);font-weight:700;margin:14px 0 6px;color:var(--gold);text-shadow:0 4px 24px rgba(0,0,0,.45)}
+.hero p{font-size:clamp(1.1rem,4vw,1.5rem);max-width:30ch;font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:99px;font-weight:700;font-size:1.05rem;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:active{transform:scale(.96)}
+.btn-fire{background:var(--fire);color:#fff;box-shadow:0 10px 28px rgba(226,102,31,.5)}
+.btn-fire:hover{transform:translateY(-3px)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.55)}
+.steam{position:absolute;inset-inline:0;top:18%;height:220px;pointer-events:none;display:flex;justify-content:center;gap:34px;opacity:.55}
+.steam i{width:14px;height:120px;border-radius:50%;background:linear-gradient(to top,rgba(255,255,255,.7),transparent);filter:blur(9px);animation:rise 5s ease-in infinite}
+.steam i:nth-child(2){animation-delay:1.2s;height:150px}
+.steam i:nth-child(3){animation-delay:2.4s}
+.steam i:nth-child(4){animation-delay:.6s;height:140px}
+.steam i:nth-child(5){animation-delay:3.2s}
+@keyframes rise{0%{transform:translateY(60px) scaleX(1);opacity:0}30%{opacity:1}100%{transform:translateY(-90px) scaleX(2.4);opacity:0}}
+
+/* ---------- ticker ---------- */
+.ticker{background:var(--crust);color:var(--gold);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:"Reem Kufi",sans-serif;font-size:1.2rem}
+.ticker div{display:inline-block;padding-inline-end:40px;animation:tick 28s linear infinite}
+@keyframes tick{to{transform:translateX(100%)}}
+
+/* ---------- sections ---------- */
+section{padding:84px 0;position:relative}
+.eyebrow{color:var(--fire);font-weight:700;letter-spacing:.02em}
+.title{font-size:clamp(2rem,7vw,3.2rem);color:var(--crust);margin:4px 0 12px}
+.lead{max-width:52ch;font-size:1.1rem;opacity:.85}
+.divider{display:block;width:100%;height:46px;margin-top:-1px}
+
+/* why */
+.why{background:var(--paper)}
+.why-grid{display:grid;gap:18px;margin-top:36px}
+.why-card{background:#fff;border-radius:var(--radius);padding:26px;box-shadow:0 10px 34px rgba(107,58,30,.1);border-top:5px solid var(--wheat)}
+.why-card .ico{font-size:2.4rem}
+.why-card h3{font-size:1.5rem;color:var(--crust);margin:6px 0 2px}
+
+/* menu */
+.menu-block{display:grid;gap:0;margin-top:44px;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 18px 50px rgba(107,58,30,.14)}
+.menu-photo{min-height:230px;background-size:cover;background-position:center;position:relative}
+.menu-photo span{position:absolute;inset-inline-start:16px;bottom:16px;background:var(--fire);color:#fff;padding:6px 18px;border-radius:99px;font-family:"Reem Kufi";font-size:1.25rem}
+.menu-list{padding:26px 24px}
+.item{display:flex;align-items:baseline;gap:10px;padding:11px 0;font-weight:600;font-size:1.1rem}
+.item::after{content:"";order:2;flex:1;border-bottom:2px dotted #d8bf9a;transform:translateY(-5px)}
+.item b{order:3;color:var(--fire);font-family:"Reem Kufi";font-size:1.35rem;white-space:nowrap}
+.item small{display:block;font-weight:400;font-size:.85rem;opacity:.65}
+.item span{order:1}
+.note{margin-top:18px;font-size:.9rem;opacity:.7}
+
+/* gallery strip */
+.counter{height:min(56vw,420px);background:url(images/bakery-counter.jpg) center/cover fixed;position:relative}
+.counter::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(59,31,15,.8),rgba(59,31,15,.15))}
+.counter .wrap{position:relative;z-index:1;height:100%;display:flex;align-items:center;color:#fff;z-index:2}
+.counter q{font-family:"Reem Kufi";font-size:clamp(1.7rem,6vw,3rem);quotes:none;max-width:16ch;color:var(--gold)}
+
+/* visit */
+.visit{background:var(--deep);color:#fff}
+.visit .title{color:var(--gold)}
+.visit-grid{display:grid;gap:18px;margin-top:34px}
+.vcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:26px}
+.vcard h3{color:var(--gold);font-size:1.4rem}
+.vcard .big{font-size:1.5rem;font-weight:700;margin-top:6px}
+.vcard .btn{margin-top:16px}
+[hidden]{display:none!important}
+
+footer{background:#2a160a;color:#d8c2a4;text-align:center;padding:30px 16px 26px;font-size:.95rem}
+footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
+
+/* sticky bar (mobile) */
+.dock{position:fixed;inset-inline:12px;bottom:12px;z-index:50;display:flex;gap:10px;background:rgba(59,31,15,.94);backdrop-filter:blur(8px);padding:10px;border-radius:99px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.dock a{flex:1;text-align:center;padding:12px 6px;border-radius:99px;font-weight:700;color:#fff;background:rgba(255,255,255,.1)}
+.dock a.main{background:var(--fire)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+@media (min-width:760px){
+  body{padding-bottom:0}
+  .dock{display:none}
+  .why-grid{grid-template-columns:repeat(3,1fr)}
+  .menu-block{grid-template-columns:1fr 1.15fr}
+  .menu-block.flip{grid-template-columns:1.15fr 1fr}
+  .menu-block.flip .menu-photo{order:2}
+  .menu-photo{min-height:100%}
+  .visit-grid{grid-template-columns:repeat(3,1fr)}
+  .menu-list{padding:38px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="steam" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap hero-inner">
+    <span class="badge">🥖 طازة كل يوم</span>
+    <h1>مخبز السنبله</h1>
+    <p>طعم العيش الطازة وجودة تقدر تثق فيها، بنقدّم لكم مخبوزات طازة كل يوم بكل حب واهتمام. ❤️</p>
+    <div class="cta">
+      <a class="btn btn-fire" href="#menu">شوف المنيو 🍞</a>
+      <a class="btn btn-ghost" href="#visit">تعالى زورنا</a>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div>🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة &nbsp;·&nbsp; 🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة</div></div>
+
+<section class="why">
+  <div class="wrap">
+    <span class="eyebrow rv">ليه السنبله؟</span>
+    <h2 class="title rv">من الفرن لإيدك، على طول</h2>
+    <p class="lead rv">مش بنعمل عيش وبس، بنعمل لحظة. ريحة الفرن أول ما تدخل، وسخونية الرغيف في إيدك.</p>
+    <div class="why-grid">
+      <div class="why-card rv"><div class="ico">🔥</div><h3>طازة كل يوم</h3><p>مخبوزاتنا بتخرج من الفرن طازة كل يوم.</p></div>
+      <div class="why-card rv"><div class="ico">🤝</div><h3>جودة تثق فيها</h3><p>جودة تقدر تعتمد عليها في كل مرة تيجي.</p></div>
+      <div class="why-card rv"><div class="ico">❤️</div><h3>بكل حب واهتمام</h3><p>كل صنف بنعمله بحب، وده بيبان في الطعم.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <span class="eyebrow rv">المنيو</span>
+    <h2 class="title rv">اختار اللي نفسك فيه</h2>
+    <p class="lead rv">الأسعار بالجنيه المصري.</p>
+
+    <div class="menu-block rv">
+      <div class="menu-photo" style="background-image:url(images/rustic-loaves.jpg)"><span>العيش 🌾</span></div>
+      <div class="menu-list">
+        <div class="item"><span>عيش فينو <small>الحبّة</small></span><b>3 ج</b></div>
+        <div class="item"><span>عيش شامي <small>الربطة</small></span><b>15 ج</b></div>
+        <div class="item"><span>عيش توست <small>الباكو</small></span><b>40 ج</b></div>
+        <div class="item"><span>عيش بلدي فلاحي <small>٥ أرغفة</small></span><b>10 ج</b></div>
+      </div>
+    </div>
+
+    <div class="menu-block flip rv" style="margin-top:28px">
+      <div class="menu-photo" style="background-image:url(images/croissant.jpg)"><span>المخبوزات 🥐</span></div>
+      <div class="menu-list">
+        <div class="item"><span>كرواسون سادة</span><b>20 ج</b></div>
+        <div class="item"><span>كرواسون بالجبنة</span><b>30 ج</b></div>
+        <div class="item"><span>فطيرة مشلتتة <small>الحبّة</small></span><b>60 ج</b></div>
+        <div class="item"><span>بيتزا مخبوزة</span><b>45 ج</b></div>
+      </div>
+    </div>
+
+    <div class="menu-block rv" style="margin-top:28px">
+      <div class="menu-photo" style="background-image:url(images/chocolate-cake.jpg)"><span>الحلويات 🍰</span></div>
+      <div class="menu-list">
+        <div class="item"><span>كيكة سادة / بالشوكولاتة</span><b>70 ج</b></div>
+        <div class="item"><span>بقلاوة وبسبوسة <small>الكيلو</small></span><b>200 ج</b></div>
+        <div class="item"><span>كحك وبيتي فور <small>الكيلو</small></span><b>220 ج</b></div>
+        <div class="item"><span>بسكوت بالسمنة <small>الكيلو</small></span><b>180 ج</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="counter">
+  <div class="wrap"><q>ريحة الفرن بتناديك</q></div>
+</div>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <span class="eyebrow rv" style="color:var(--gold)">زورنا</span>
+    <h2 class="title rv">إحنا مستنيينك</h2>
+    <div class="visit-grid">
+      <div class="vcard rv">
+        <h3>📍 العنوان</h3>
+        <div class="big">بورفؤاد، أمام كلية التجارة</div>
+        <a class="btn btn-fire" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D9%83%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D8%A9+%D8%A8%D9%88%D8%B1%D9%81%D8%A4%D8%A7%D8%AF">افتح الخريطة</a>
+      </div>
+      <div class="vcard rv">
+        <h3>🕖 المواعيد</h3>
+        <div class="big">من 7 ص ل 12 مساءً</div>
+      </div>
+      <div class="vcard rv" id="contact" hidden>
+        <h3>📞 كلمنا</h3>
+        <div class="big" id="phoneText"></div>
+        <a class="btn btn-fire" id="callBtn" href="#">اتصل</a>
+        <a class="btn btn-ghost" id="waBtn" target="_blank" rel="noopener" href="#">واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>مخبز السنبله</b><br>
+  طعم العيش الطازة وجودة تقدر تثق فيها 🌾<br>
+  صور من Unsplash
+</footer>
+
+<nav class="dock" aria-label="روابط سريعة">
+  <a class="main" href="#menu">المنيو</a>
+  <a href="#visit">العنوان والمواعيد</a>
+</nav>
+
+<script>
+/* رقم التواصل: اكتبه هنا بصيغة مصرية 11 رقم (مثال 01012345678). لو فاضي، قسم "كلمنا" مش بيظهر. */
+const PHONE = "";
+
+(function(){
+  if(/^01\d{9}$/.test(PHONE)){
+    document.getElementById("contact").hidden = false;
+    document.getElementById("phoneText").textContent = PHONE;
+    document.getElementById("callBtn").href = "tel:" + PHONE;
+    document.getElementById("waBtn").href = "https://wa.me/2" + PHONE;
+    const d = document.querySelector(".dock");
+    d.insertAdjacentHTML("afterbegin", '<a class="main" href="tel:' + PHONE + '">اتصل بينا</a>');
+    d.querySelectorAll("a.main")[1].classList.remove("main");
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll(".rv").forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
