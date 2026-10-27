@@ -5,8 +5,12 @@ create table if not exists public.messages (
   name       text        not null check (char_length(name)    between 1 and 80),
   phone      text        not null check (phone ~ '^01[0-9]{9}$'),
   message    text        not null check (char_length(message) between 1 and 1000),
+  contact_ok boolean     not null default false,
   created_at timestamptz not null default now()
 );
+
+-- لو الجدول كان معمول قبل كده: نضيف عمود الموافقة على التواصل
+alter table public.messages add column if not exists contact_ok boolean not null default false;
 
 alter table public.messages enable row level security;
 

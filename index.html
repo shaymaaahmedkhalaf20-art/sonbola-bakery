@@ -68,8 +68,10 @@ h1,h2,h3{font-family:"Reem Kufi","Cairo",sans-serif;line-height:1.3}
 
 /* ---------- ticker ---------- */
 .ticker{background:var(--crust);color:var(--gold);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:"Reem Kufi",sans-serif;font-size:1.2rem}
-.ticker div{display:inline-block;padding-inline-end:40px;animation:tick 28s linear infinite}
-@keyframes tick{to{transform:translateX(100%)}}
+/* نسختين متطابقتين ورا بعض: لما الأولى تخلص، التانية بتكون مكانها بالظبط فمفيش فراغ */
+.ticker .track{display:flex;width:max-content;animation:tick 56s linear infinite}
+.ticker .track span{flex:none}
+@keyframes tick{to{transform:translateX(50%)}}
 
 /* ---------- sections ---------- */
 section{padding:84px 0;position:relative}
@@ -98,19 +100,27 @@ section{padding:84px 0;position:relative}
 .note{margin-top:18px;font-size:.9rem;opacity:.7}
 
 /* gallery strip */
-.counter{height:min(56vw,420px);background:url(images/bakery-counter.jpg) center/cover fixed;position:relative}
-.counter::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(59,31,15,.8),rgba(59,31,15,.15))}
-.counter .wrap{position:relative;z-index:1;height:100%;display:flex;align-items:center;color:#fff;z-index:2}
-.counter q{font-family:"Reem Kufi";font-size:clamp(1.7rem,6vw,3rem);quotes:none;max-width:16ch;color:var(--gold)}
+.counter{position:relative;overflow:hidden;isolation:isolate;padding:96px 0 110px;text-align:center;color:#fff;background:radial-gradient(ellipse at 50% 55%,rgba(255,190,90,.45) 0%,rgba(226,102,31,.25) 30%,transparent 62%),linear-gradient(180deg,var(--crust) 0%,var(--deep) 100%)}
+.counter::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(rgba(255,230,170,.14) 2px,transparent 2.5px) 0 0/34px 34px;mask-image:linear-gradient(180deg,transparent,#000 40%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,transparent)}
+.counter .glow{position:absolute;left:50%;top:50%;width:min(80vw,520px);aspect-ratio:1;translate:-50% -50%;z-index:-1;border-radius:50%;background:radial-gradient(circle,rgba(255,220,140,.5),transparent 65%);animation:glow 5s ease-in-out infinite alternate}
+.counter svg.wheat{position:absolute;bottom:-10px;height:85%;width:auto;z-index:-1;opacity:.55;transform-origin:bottom center;animation:sway 6s ease-in-out infinite alternate}
+.counter svg.w1{right:3%}
+.counter svg.w2{left:3%;transform:scaleX(-1);animation-name:sway2}
+.counter .ico{font-size:clamp(2.6rem,9vw,3.6rem);filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));animation:bob 4s ease-in-out infinite}
+.counter q{display:block;font-family:"Reem Kufi";font-size:clamp(2.2rem,8vw,4rem);quotes:none;color:var(--gold);margin:10px auto 8px;text-shadow:0 4px 24px rgba(0,0,0,.4)}
+.counter p{font-size:clamp(1.05rem,3.6vw,1.3rem);font-weight:600;opacity:.9;max-width:34ch;margin-inline:auto}
+.counter .btn{margin-top:26px}
 
 /* visit */
-.visit{background:var(--deep);color:#fff}
+.visit{background:var(--deep);color:#fff;padding-top:64px}
 .visit .title{color:var(--gold)}
 .visit-grid{display:grid;gap:18px;margin-top:34px}
-.vcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:26px}
+.vcard{display:flex;flex-direction:column;align-items:flex-start;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border:1px solid rgba(240,195,107,.22);border-top:5px solid var(--wheat);border-radius:var(--radius);padding:28px 26px;box-shadow:0 14px 34px rgba(0,0,0,.25);transition:transform .25s,border-color .25s}
+.vcard:hover{transform:translateY(-4px);border-color:rgba(240,195,107,.5)}
+.vcard .ico{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:rgba(240,195,107,.15);font-size:1.8rem;margin-bottom:12px}
 .vcard h3{color:var(--gold);font-size:1.4rem}
-.vcard .big{font-size:1.5rem;font-weight:700;margin-top:6px}
-.vcard .btn{margin-top:16px}
+.vcard .big{font-size:1.4rem;font-weight:700;margin-top:4px;line-height:1.6}
+.vcard .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:18px}
 /* contact form */
 .msg{background:var(--paper)}
 .msg-form{display:grid;gap:16px;margin-top:30px;max-width:620px;background:#fff;border-radius:28px;padding:28px 24px;box-shadow:0 18px 50px rgba(107,58,30,.14)}
@@ -119,6 +129,8 @@ section{padding:84px 0;position:relative}
 .field textarea{min-height:130px;resize:vertical}
 .field input:focus,.field textarea:focus{outline:0;border-color:var(--fire);box-shadow:0 0 0 4px rgba(226,102,31,.18)}
 .field input:user-invalid,.field textarea:user-invalid{border-color:#c0392b}
+.check{display:flex;align-items:flex-start;gap:10px;font-weight:600;color:var(--ink);cursor:pointer}
+.check input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--fire);cursor:pointer}
 .hp{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;overflow:hidden}
 .form-status{font-weight:700;min-height:1.8em}
 .form-status.ok{color:#2f7d32;font-size:1.2rem}
@@ -147,7 +159,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
   .menu-block.flip{grid-template-columns:1.15fr 1fr}
   .menu-block.flip .menu-photo{order:2}
   .menu-photo{min-height:100%}
-  .visit-grid{grid-template-columns:repeat(3,1fr)}
+  .visit-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .menu-list{padding:38px}
 }
 </style>
@@ -176,7 +188,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
   </div>
 </header>
 
-<div class="ticker" aria-hidden="true"><div>🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة &nbsp;·&nbsp; 🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة</div></div>
+<div class="ticker" aria-hidden="true"><div class="track"><span>🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة &nbsp;·&nbsp; 🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة &nbsp;·&nbsp;&nbsp;</span><span>🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة &nbsp;·&nbsp; 🌾 عيش فينو &nbsp;·&nbsp; 🥐 كرواسون &nbsp;·&nbsp; 🍰 كيك &nbsp;·&nbsp; 🍪 كحك وبسكوت &nbsp;·&nbsp; 🥧 فطير مشلتت &nbsp;·&nbsp; 🍕 بيتزا &nbsp;·&nbsp; 🌾 عيش شامي &nbsp;·&nbsp; 🍯 بقلاوة &nbsp;·&nbsp;&nbsp;</span></div></div>
 
 <section class="why">
   <div class="wrap">
@@ -230,7 +242,15 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
 </section>
 
 <div class="counter">
-  <div class="wrap"><q>ريحة الفرن بتناديك</q></div>
+  <div class="glow" aria-hidden="true"></div>
+  <svg class="wheat w1" aria-hidden="true" viewBox="0 0 120 400" fill="none"><path d="M60 400 C58 300 62 200 60 60" stroke="#e8b659" stroke-width="5" stroke-linecap="round"/><g fill="#f0c36b"><ellipse cx="44" cy="70" rx="9" ry="20" transform="rotate(-25 44 70)"/><ellipse cx="76" cy="70" rx="9" ry="20" transform="rotate(25 76 70)"/><ellipse cx="42" cy="110" rx="9" ry="20" transform="rotate(-25 42 110)"/><ellipse cx="78" cy="110" rx="9" ry="20" transform="rotate(25 78 110)"/><ellipse cx="42" cy="150" rx="9" ry="20" transform="rotate(-25 42 150)"/><ellipse cx="78" cy="150" rx="9" ry="20" transform="rotate(25 78 150)"/><ellipse cx="60" cy="38" rx="9" ry="22"/></g></svg>
+  <svg class="wheat w2" aria-hidden="true" viewBox="0 0 120 400" fill="none"><path d="M60 400 C62 300 58 200 60 60" stroke="#e8b659" stroke-width="5" stroke-linecap="round"/><g fill="#f0c36b"><ellipse cx="44" cy="70" rx="9" ry="20" transform="rotate(-25 44 70)"/><ellipse cx="76" cy="70" rx="9" ry="20" transform="rotate(25 76 70)"/><ellipse cx="42" cy="110" rx="9" ry="20" transform="rotate(-25 42 110)"/><ellipse cx="78" cy="110" rx="9" ry="20" transform="rotate(25 78 110)"/><ellipse cx="42" cy="150" rx="9" ry="20" transform="rotate(-25 42 150)"/><ellipse cx="78" cy="150" rx="9" ry="20" transform="rotate(25 78 150)"/><ellipse cx="60" cy="38" rx="9" ry="22"/></g></svg>
+  <div class="wrap rv">
+    <div class="ico" aria-hidden="true">🔥</div>
+    <q>ريحة الفرن بتناديك</q>
+    <p>مخبوزات طازة كل يوم بكل حب واهتمام.</p>
+    <a class="btn btn-fire" href="#visit">تعالى زورنا</a>
+  </div>
 </div>
 
 <section class="visit" id="visit">
@@ -239,19 +259,24 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
     <h2 class="title rv">إحنا مستنيينك</h2>
     <div class="visit-grid">
       <div class="vcard rv">
-        <h3>📍 العنوان</h3>
+        <div class="ico" aria-hidden="true">📍</div>
+        <h3>العنوان</h3>
         <div class="big">بورفؤاد، أمام كلية التجارة</div>
-        <a class="btn btn-fire" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D9%83%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D8%A9+%D8%A8%D9%88%D8%B1%D9%81%D8%A4%D8%A7%D8%AF">افتح الخريطة</a>
+        <div class="btns"><a class="btn btn-fire" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D9%83%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D8%A9+%D8%A8%D9%88%D8%B1%D9%81%D8%A4%D8%A7%D8%AF">افتح الخريطة</a></div>
       </div>
       <div class="vcard rv">
-        <h3>🕖 المواعيد</h3>
+        <div class="ico" aria-hidden="true">🕖</div>
+        <h3>المواعيد</h3>
         <div class="big">من 7 ص ل 12 مساءً</div>
       </div>
       <div class="vcard rv" id="contact" hidden>
-        <h3>📞 كلمنا</h3>
+        <div class="ico" aria-hidden="true">📞</div>
+        <h3>كلمنا</h3>
         <div class="big" id="phoneText"></div>
-        <a class="btn btn-fire" id="callBtn" href="#">اتصل</a>
-        <a class="btn btn-ghost" id="waBtn" target="_blank" rel="noopener" href="#">واتساب</a>
+        <div class="btns">
+          <a class="btn btn-fire" id="callBtn" href="#">اتصل</a>
+          <a class="btn btn-ghost" id="waBtn" target="_blank" rel="noopener" href="#">واتساب</a>
+        </div>
       </div>
     </div>
   </div>
@@ -271,6 +296,10 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
       </label>
       <label class="field">الرسالة
         <textarea name="message" id="fMsg" required maxlength="1000"></textarea>
+      </label>
+      <label class="check">
+        <input type="checkbox" name="contact_ok" id="fContactOk">
+        موافق إنكم تتواصلوا معايا بعد كده بالعروض والأخبار الجديدة
       </label>
       <label class="hp" aria-hidden="true">لا تملأ هذا الحقل <input type="text" id="fHp" tabindex="-1" autocomplete="off"></label>
       <button class="btn btn-fire" type="submit" id="fBtn">إرسال</button>
@@ -325,6 +354,7 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-iNZSPrC93Dc1kCSE3tQ6w_Dy2xlzht
     const name = form.fName.value.trim();
     const phone = form.fPhone.value.trim();
     const message = form.fMsg.value.trim();
+    const contact_ok = form.fContactOk.checked;
     if(!name || !phone || !message){ say("كل الخانات مطلوبة.", "err"); return; }
     if(!/^01\d{9}$/.test(phone)){ say("اكتب رقم موبايل مصري صحيح (11 رقم).", "err"); return; }
     if(form.fHp.value){ say("وصلتنا رسالتك، هنكلّمك في نفس اليوم.", "ok"); form.reset(); return; }
@@ -332,15 +362,20 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-iNZSPrC93Dc1kCSE3tQ6w_Dy2xlzht
 
     btn.disabled = true; say("بنبعت رسالتك…");
     try{
-      const r = await fetch(SUPABASE_URL.replace(/\/$/, "") + "/rest/v1/messages", {
+      const send = row => fetch(SUPABASE_URL.replace(/\/$/, "") + "/rest/v1/messages", {
         method: "POST",
         headers: {
           "apikey": SUPABASE_PUBLISHABLE_KEY,
           "Content-Type": "application/json",
           "Prefer": "return=minimal"
         },
-        body: JSON.stringify({ name, phone, message })
+        body: JSON.stringify(row)
       });
+      let r = await send({ name, phone, message, contact_ok });
+      /* لو عمود contact_ok لسه متعملش في الجدول (PGRST204)، نبعت الرسالة من غيره عشان الفورم مايقفش */
+      if(r.status === 400 && (await r.clone().json().catch(() => ({}))).code === "PGRST204"){
+        r = await send({ name, phone, message });
+      }
       if(!r.ok) throw new Error(r.status);
       form.reset();
       say("وصلتنا رسالتك، هنكلّمك في نفس اليوم.", "ok");
