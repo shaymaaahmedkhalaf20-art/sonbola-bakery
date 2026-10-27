@@ -1,0 +1,34 @@
+# كل اللي في الريبو بيتنشر على Cloudflare Pages، فأي ملف هنا بيبقى ليه لينك عام
+
+# ملف معلومات المخبز (مرجع شغل بس، مش للنشر)
+*.docx
+# ملفات القفل اللي Word بيعملها وهو مفتوح
+~$*
+
+# أسرار ومفاتيح (مفتاح السيرفيس رول ماينفعش يترفع أبداً)
+.env
+.env.*
+*.pem
+*.key
+
+# إعدادات Claude الشخصية (الـ skills بتترفع عادي)
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Cloudflare / Supabase CLI
+.wrangler/
+.dev.vars
+supabase/.temp/
+supabase/.branches/
+
+# Node (لو اتضاف بعدين)
+node_modules/
+npm-debug.log*
+
+# ملفات الويندوز والماك والمحررات
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+*.log

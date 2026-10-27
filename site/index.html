@@ -98,6 +98,51 @@ section{padding:84px 0;position:relative}
 .item small{display:block;font-weight:400;font-size:.85rem;opacity:.65}
 .item span{order:1}
 .note{margin-top:18px;font-size:.9rem;opacity:.7}
+.cat-art{min-height:170px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#ffd37a 0%,#f0a43a 25%,#c9661f 55%,#6b3a1e 100%)}
+.cat-art i{font-style:normal;font-size:clamp(4.5rem,18vw,7.5rem);filter:drop-shadow(0 14px 18px rgba(0,0,0,.35));animation:bob 4s ease-in-out infinite}
+.prod{padding:4px 0 10px;border-bottom:1px solid #f1e3cc}
+.prod:last-child{border-bottom:0}
+.prod .item{padding-bottom:4px}
+.prod .thumb{width:52px;height:52px;border-radius:14px;object-fit:cover;flex:none;order:0;align-self:center}
+.prod.off .item{opacity:.5}
+.ctl{display:flex;justify-content:flex-end;align-items:center;gap:8px;min-height:40px}
+.tag{font-size:.85rem;font-weight:700;color:#8a6a4a;background:#f4e7d2;padding:3px 12px;border-radius:99px}
+.add{font:inherit;font-weight:700;border:2px solid var(--fire);color:var(--fire);background:#fff;border-radius:99px;padding:4px 18px;cursor:pointer}
+.add:hover{background:var(--fire);color:#fff}
+.step{display:inline-flex;align-items:center;background:var(--fire);color:#fff;border-radius:99px;overflow:hidden}
+.step button{font:inherit;font-size:1.3rem;font-weight:700;width:40px;height:38px;border:0;background:transparent;color:#fff;cursor:pointer}
+.step button:hover{background:rgba(0,0,0,.12)}
+.step output{min-width:44px;text-align:center;font-weight:700;font-size:1.05rem}
+.shop-status{margin-top:22px;background:var(--crust);color:var(--gold);padding:14px 20px;border-radius:18px;font-weight:700;font-size:1.1rem}
+
+/* cart + checkout */
+.cartbar{position:fixed;inset-inline:12px;bottom:12px;z-index:60;display:flex;justify-content:center}
+.cartbar .btn{width:min(520px,100%);justify-content:center;box-shadow:0 12px 34px rgba(0,0,0,.35)}
+body.has-cart .dock{display:none}
+.sheet{border:0;padding:0;margin:auto auto 0;width:100%;max-width:560px;max-height:92svh;border-radius:28px 28px 0 0;background:var(--paper);color:var(--ink);box-shadow:0 -10px 40px rgba(0,0,0,.3)}
+.sheet::backdrop{background:rgba(42,22,10,.6)}
+.sheet-in{display:grid;gap:14px;padding:22px 20px 26px}
+.sheet-head{display:flex;justify-content:space-between;align-items:center}
+.sheet-head h2{color:var(--crust);font-size:1.7rem}
+.x{font:inherit;font-size:1.2rem;width:42px;height:42px;border-radius:50%;border:0;background:#f1e3cc;cursor:pointer}
+.co-line{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed #e4cfaa;font-weight:600}
+.co-line .nm{flex:1}
+.co-line .nm small{display:block;font-weight:400;opacity:.7}
+.co-line .step button{width:34px;height:32px;font-size:1.1rem}
+.co-line .step output{min-width:36px;font-size:.95rem}
+.seg{border:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg legend{font-weight:700;color:var(--crust);margin-bottom:6px}
+.seg label{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;padding:12px;border:2px solid #ecd9b8;border-radius:16px;font-weight:700;cursor:pointer;background:#fff}
+.seg label:has(input:checked){border-color:var(--fire);background:#fff1e6;color:var(--fire)}
+.seg input{accent-color:var(--fire)}
+.sum{display:grid;gap:4px;background:#fff;border-radius:16px;padding:14px 16px;font-weight:600}
+.sum div{display:flex;justify-content:space-between}
+.sum .tot{font-size:1.25rem;font-weight:900;color:var(--crust);border-top:2px dotted #d8bf9a;padding-top:6px;margin-top:4px}
+.done{text-align:center;justify-items:center}
+.done .big-ico{font-size:4rem}
+.done .num{font-family:"Reem Kufi";font-size:2.6rem;color:var(--fire);direction:ltr}
+.sheet .btn[disabled]{opacity:.6;cursor:wait}
+@media (min-width:760px){.sheet{margin:auto;border-radius:28px}}
 
 /* gallery strip */
 .counter{position:relative;overflow:hidden;isolation:isolate;padding:96px 0 110px;text-align:center;color:#fff;background:radial-gradient(ellipse at 50% 55%,rgba(255,190,90,.45) 0%,rgba(226,102,31,.25) 30%,transparent 62%),linear-gradient(180deg,var(--crust) 0%,var(--deep) 100%)}
@@ -158,7 +203,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
   .menu-block{grid-template-columns:1fr 1.15fr}
   .menu-block.flip{grid-template-columns:1.15fr 1fr}
   .menu-block.flip .menu-photo{order:2}
-  .menu-photo{min-height:100%}
+  .menu-photo,.cat-art{min-height:100%}
   .visit-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .menu-list{padding:38px}
 }
@@ -182,7 +227,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
     <h1>مخبز السنبله</h1>
     <p>طعم العيش الطازة وجودة تقدر تثق فيها، بنقدّم لكم مخبوزات طازة كل يوم بكل حب واهتمام. ❤️</p>
     <div class="cta">
-      <a class="btn btn-fire" href="#menu">شوف المنيو 🍞</a>
+      <a class="btn btn-fire" href="#menu">اطلب دلوقتي 🛒</a>
       <a class="btn btn-ghost" href="#visit">تعالى زورنا</a>
     </div>
   </div>
@@ -207,37 +252,9 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
   <div class="wrap">
     <span class="eyebrow rv">المنيو</span>
     <h2 class="title rv">اختار اللي نفسك فيه</h2>
-    <p class="lead rv">الأسعار بالجنيه المصري.</p>
-
-    <div class="menu-block rv">
-      <div class="menu-photo" style="background-image:url(images/rustic-loaves.jpg)"><span>العيش 🌾</span></div>
-      <div class="menu-list">
-        <div class="item"><span>عيش فينو <small>الحبّة</small></span><b>3 ج</b></div>
-        <div class="item"><span>عيش شامي <small>الربطة</small></span><b>15 ج</b></div>
-        <div class="item"><span>عيش توست <small>الباكو</small></span><b>40 ج</b></div>
-        <div class="item"><span>عيش بلدي فلاحي <small>٥ أرغفة</small></span><b>10 ج</b></div>
-      </div>
-    </div>
-
-    <div class="menu-block flip rv" style="margin-top:28px">
-      <div class="menu-photo" style="background-image:url(images/croissant.jpg)"><span>المخبوزات 🥐</span></div>
-      <div class="menu-list">
-        <div class="item"><span>كرواسون سادة</span><b>20 ج</b></div>
-        <div class="item"><span>كرواسون بالجبنة</span><b>30 ج</b></div>
-        <div class="item"><span>فطيرة مشلتتة <small>الحبّة</small></span><b>60 ج</b></div>
-        <div class="item"><span>بيتزا مخبوزة</span><b>45 ج</b></div>
-      </div>
-    </div>
-
-    <div class="menu-block rv" style="margin-top:28px">
-      <div class="menu-photo" style="background-image:url(images/chocolate-cake.jpg)"><span>الحلويات 🍰</span></div>
-      <div class="menu-list">
-        <div class="item"><span>كيكة سادة / بالشوكولاتة</span><b>70 ج</b></div>
-        <div class="item"><span>بقلاوة وبسبوسة <small>الكيلو</small></span><b>200 ج</b></div>
-        <div class="item"><span>كحك وبيتي فور <small>الكيلو</small></span><b>220 ج</b></div>
-        <div class="item"><span>بسكوت بالسمنة <small>الكيلو</small></span><b>180 ج</b></div>
-      </div>
-    </div>
+    <p class="lead rv">الأسعار بالجنيه المصري. اختار الكمية واطلب أونلاين، والدفع كاش عند الاستلام.</p>
+    <div class="shop-status" id="shopStatus" role="status" hidden></div>
+    <div id="menuList"><p class="note">بنحمّل المنيو…</p></div>
   </div>
 </section>
 
@@ -267,7 +284,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
       <div class="vcard rv">
         <div class="ico" aria-hidden="true">🕖</div>
         <h3>المواعيد</h3>
-        <div class="big">من 7 ص ل 12 مساءً</div>
+        <div class="big" id="hoursText">من 7 ص ل 12 مساءً</div>
       </div>
       <div class="vcard rv" id="contact" hidden>
         <div class="ico" aria-hidden="true">📞</div>
@@ -285,8 +302,8 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
 <section class="msg" id="message">
   <div class="wrap">
     <span class="eyebrow rv">ابعتلنا رسالة</span>
-    <h2 class="title rv">عايز تطلب أو تسأل؟</h2>
-    <p class="lead rv">سيب بياناتك ورسالتك وهنكلّمك.</p>
+    <h2 class="title rv">عندك سؤال؟</h2>
+    <p class="lead rv">ابعتلنا سؤالك أو رأيك وهنكلّمك. عشان تطلب، اختار من <a href="#menu" style="color:var(--fire);font-weight:700">المنيو</a>.</p>
     <form class="msg-form rv" id="msgForm" novalidate>
       <label class="field">الاسم
         <input type="text" name="name" id="fName" required maxlength="80" autocomplete="name">
@@ -319,6 +336,50 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
   <a href="#visit">العنوان والمواعيد</a>
 </nav>
 
+<div class="cartbar" id="cartBar" hidden>
+  <button class="btn btn-fire" type="button" id="cartOpen">🛒 <span id="cartSummary"></span> · كمّل الطلب</button>
+</div>
+
+<dialog class="sheet" id="checkout" aria-labelledby="coTitle">
+  <form class="sheet-in" id="coForm" novalidate>
+    <div class="sheet-head"><h2 id="coTitle">طلبك</h2><button type="button" class="x" data-close aria-label="قفل">✕</button></div>
+    <div id="coLines"></div>
+    <fieldset class="seg">
+      <legend>هتستلم إزاي؟</legend>
+      <label><input type="radio" name="ful" value="pickup" checked> استلام من المحل</label>
+      <label><input type="radio" name="ful" value="delivery"> توصيل في بورفؤاد</label>
+    </fieldset>
+    <label class="field">الاسم
+      <input type="text" id="oName" required maxlength="80" autocomplete="name">
+    </label>
+    <label class="field">رقم الموبايل
+      <input type="tel" id="oPhone" required inputmode="numeric" maxlength="11" pattern="01[0-9]{9}" placeholder="01012345678" autocomplete="tel" dir="ltr" style="text-align:right">
+    </label>
+    <label class="field" id="oAddrWrap" hidden>العنوان بالتفصيل
+      <textarea id="oAddr" maxlength="300" placeholder="الشارع، رقم العمارة، الدور، وعلامة مميزة جنبك" style="min-height:90px"></textarea>
+    </label>
+    <label class="field">ملاحظات <small style="font-weight:400">(اختياري)</small>
+      <textarea id="oNotes" maxlength="500" placeholder="مثلاً: عايزه الساعة ٥" style="min-height:70px"></textarea>
+    </label>
+    <label class="hp" aria-hidden="true">لا تملأ هذا الحقل <input type="text" id="oHp" tabindex="-1" autocomplete="off"></label>
+    <div class="sum">
+      <div><span>الأصناف</span><span id="sSub"></span></div>
+      <div id="sFeeRow" hidden><span>التوصيل</span><span id="sFee"></span></div>
+      <div class="tot"><span>الإجمالي</span><span id="sTot"></span></div>
+    </div>
+    <p class="note" style="margin:0">💵 الدفع كاش عند الاستلام. هنكلّمك نأكد الطلب قبل ما نجهّزه.</p>
+    <button class="btn btn-fire" type="submit" id="oBtn" style="justify-content:center">اطلب</button>
+    <div class="form-status" id="oStatus" role="status" aria-live="polite"></div>
+  </form>
+  <div class="sheet-in done" id="coDone" hidden>
+    <div class="big-ico" aria-hidden="true">🎉</div>
+    <h2 style="color:var(--crust)">طلبك وصل!</h2>
+    <div id="doneNum" class="num"></div>
+    <p id="doneText"></p>
+    <button class="btn btn-fire" type="button" data-close>تمام</button>
+  </div>
+</dialog>
+
 <script>
 /* رقم التواصل: اكتبه هنا بصيغة مصرية 11 رقم (مثال 01012345678). لو فاضي، قسم "كلمنا" مش بيظهر. */
 const PHONE = "";
@@ -335,13 +396,223 @@ const PHONE = "";
   }
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.15});
   document.querySelectorAll(".rv").forEach(el => io.observe(el));
+  window.reveal = el => io.observe(el);
 })();
 </script>
 
+<script src="config.js"></script>
 <script>
-/* إعدادات Supabase: الصق هنا Project URL والمفتاح الـ publishable فقط (sb_publishable_...). ممنوع تحط المفتاح الـ secret هنا أبدًا. */
-const SUPABASE_URL = "https://uduqpiavuxuwqmmvlnrw.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-iNZSPrC93Dc1kCSE3tQ6w_Dy2xlzht";
+const SUPABASE_URL = SONBOLA.url;
+const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
+
+/* ---------- المنيو والسلة والطلب ----------
+   المتصفح بيبعت الأصناف والكميات والإجمالي اللي الزبون شافه بس. الأسعار الحقيقية بتتحسب في place_order (sql/002). */
+(function(){
+  const API = SUPABASE_URL.replace(/\/$/, "") + "/rest/v1";
+  const HEAD = { apikey: SUPABASE_PUBLISHABLE_KEY, "Content-Type": "application/json" };
+  const CART_KEY = "sonbola-cart", ME_KEY = "sonbola-customer";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const money = n => +(+n).toFixed(2) + " ج";
+  const FRAC = { 0.25: "¼", 0.5: "½", 0.75: "¾" };
+  const qtyText = q => { const w = Math.floor(q + 1e-9), f = +(q - w).toFixed(3); return f ? (w || "") + (FRAC[f] || "." + String(f).slice(2)) : String(w); };
+  const unitShort = u => u.replace(/^ال/, "");
+  const store = { get(k){ try{ return JSON.parse(localStorage.getItem(k)) }catch(e){ return null } },
+                  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)) }catch(e){} } };
+  const time12 = hm => { const [h, m] = hm.split(":").map(Number); if(h === 0 && !m) return "12 بالليل";
+                         return (h % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (h < 12 ? " ص" : " م"); };
+
+  let cats = [], products = new Map(), settings = null;
+  let cart = store.get(CART_KEY) || {};
+
+  async function rpc(fn, body){
+    const r = await fetch(API + "/rpc/" + fn, { method: "POST", headers: HEAD, body: JSON.stringify(body || {}) });
+    const j = await r.json().catch(() => null);
+    if(!r.ok) throw Object.assign(new Error((j && j.message) || r.status), { key: j && j.message });
+    return j;
+  }
+  async function get(path){
+    const r = await fetch(API + path, { headers: HEAD });
+    if(!r.ok) throw new Error(r.status);
+    return r.json();
+  }
+
+  async function load(){
+    const [c, p, s] = await Promise.all([
+      get("/categories?select=id,name,emoji&order=sort_order,id"),
+      get("/products?select=id,category_id,name,unit_label,price,qty_step,photo_url,available&order=sort_order,id"),
+      rpc("public_settings")
+    ]);
+    cats = c; settings = s;
+    products = new Map(p.map(x => [x.id, { ...x, price: +x.price, qty_step: +x.qty_step }]));
+    /* السلة المحفوظة: نشيل اللي اتمسح أو خلص، ونظبط الكمية على أصغر كمية للصنف */
+    for(const id of Object.keys(cart)){
+      const pr = products.get(+id);
+      if(!pr || !pr.available || !(cart[id] > 0)){ delete cart[id]; continue; }
+      cart[id] = Math.min(100, Math.ceil(cart[id] / pr.qty_step - 1e-9) * pr.qty_step);
+    }
+    saveCart();
+  }
+
+  const canOrder = () => settings && settings.open_now;
+
+  function renderStatus(){
+    $("hoursText").textContent = "من " + time12(settings.opens_at) + " ل " + time12(settings.closes_at);
+    const st = $("shopStatus");
+    if(canOrder()){ st.hidden = true; return; }
+    const [h] = settings.opens_at.split(":").map(Number);
+    st.textContent = settings.ordering_paused
+      ? "⏸️ الطلبات أونلاين متوقفة مؤقتاً. تقدر تزورنا في المحل."
+      : "🌙 مقفولين دلوقتي، بنفتح " + (h < 12 && h > 0 ? h + " الصبح" : time12(settings.opens_at)) + ". تقدر تتفرج على المنيو لحد ما نفتح.";
+    st.hidden = false;
+  }
+
+  function ctlHtml(p){
+    if(!p.available) return '<span class="tag">خلص النهارده</span>';
+    if(!canOrder()) return "";
+    const q = cart[p.id] || 0;
+    if(!q) return '<button class="add" type="button" data-add="' + p.id + '">أضف +</button>';
+    return '<span class="step"><button type="button" data-inc="' + p.id + '" aria-label="زوّد">+</button><output>' +
+           qtyText(q) + '</output><button type="button" data-dec="' + p.id + '" aria-label="قلّل">−</button></span>';
+  }
+
+  function renderMenu(){
+    const box = $("menuList");
+    box.innerHTML = cats.map((c, i) => {
+      const list = [...products.values()].filter(p => p.category_id === c.id);
+      if(!list.length) return "";
+      return '<div class="menu-block rv' + (i % 2 ? " flip" : "") + '" style="margin-top:' + (i ? 28 : 44) + 'px">' +
+        '<div class="menu-photo cat-art"><i aria-hidden="true">' + esc(c.emoji || "🥖") + '</i><span>' + esc(c.name) + '</span></div>' +
+        '<div class="menu-list">' + list.map(p =>
+          '<div class="prod' + (p.available ? "" : " off") + '" data-id="' + p.id + '"><div class="item">' +
+          (p.photo_url ? '<img class="thumb" src="' + esc(p.photo_url) + '" alt="" loading="lazy">' : "") +
+          '<span>' + esc(p.name) + (p.unit_label ? " <small>" + esc(p.unit_label) + "</small>" : "") + '</span><b>' + money(p.price) + '</b></div>' +
+          '<div class="ctl">' + ctlHtml(p) + '</div></div>').join("") +
+        '</div></div>';
+    }).join("") || '<p class="note">المنيو فاضي دلوقتي.</p>';
+    box.querySelectorAll(".rv").forEach(el => window.reveal(el));
+  }
+
+  function refreshCtl(id){
+    const el = document.querySelector('.prod[data-id="' + id + '"] .ctl');
+    if(el) el.innerHTML = ctlHtml(products.get(+id));
+  }
+
+  function saveCart(){ store.set(CART_KEY, cart); renderCartBar(); }
+
+  function totals(){
+    const lines = Object.keys(cart).map(id => ({ p: products.get(+id), q: cart[id] })).filter(l => l.p);
+    const sub = +lines.reduce((s, l) => s + Math.round(l.p.price * l.q * 100) / 100, 0).toFixed(2);
+    const delivery = document.querySelector('input[name="ful"]:checked').value === "delivery";
+    const fee = delivery ? +settings.delivery_fee : 0;
+    return { lines, sub, fee, delivery, total: +(sub + fee).toFixed(2) };
+  }
+
+  function renderCartBar(){
+    const n = Object.keys(cart).length;
+    const show = n > 0 && canOrder();
+    $("cartBar").hidden = !show;
+    document.body.classList.toggle("has-cart", show);
+    if(show) $("cartSummary").textContent = n + (n === 1 ? " صنف" : " أصناف") + " · " + money(totals().sub);
+  }
+
+  function change(id, dir){
+    const p = products.get(+id); if(!p) return;
+    const q = Math.max(0, Math.min(100, +((cart[id] || 0) + dir * p.qty_step).toFixed(3)));
+    if(q) cart[id] = q; else delete cart[id];
+    saveCart(); refreshCtl(id);
+    if($("checkout").open) renderCheckout();
+  }
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-add],[data-inc],[data-dec]");
+    if(!b) return;
+    if(b.dataset.add) change(b.dataset.add, 1);
+    else if(b.dataset.inc) change(b.dataset.inc, 1);
+    else change(b.dataset.dec, -1);
+  });
+
+  /* ---------- صفحة الطلب ---------- */
+  const dlg = $("checkout"), form = $("coForm");
+  const say = (t, c) => { $("oStatus").textContent = t; $("oStatus").className = "form-status " + (c || ""); };
+
+  function renderCheckout(){
+    const t = totals();
+    if(!t.lines.length){ dlg.close(); return; }
+    $("coLines").innerHTML = t.lines.map(l =>
+      '<div class="co-line"><div class="nm">' + esc(l.p.name) + '<small>' +
+      (l.p.unit_label ? qtyText(l.q) + " " + esc(unitShort(l.p.unit_label)) + " · " : "") + money(l.p.price * l.q) + '</small></div>' +
+      '<span class="step"><button type="button" data-inc="' + l.p.id + '" aria-label="زوّد">+</button><output>' + qtyText(l.q) +
+      '</output><button type="button" data-dec="' + l.p.id + '" aria-label="قلّل">−</button></span></div>').join("");
+    $("oAddrWrap").hidden = !t.delivery;
+    $("sSub").textContent = money(t.sub);
+    $("sFeeRow").hidden = !t.delivery;
+    $("sFee").textContent = t.fee ? money(t.fee) : "مجاناً";
+    $("sTot").textContent = money(t.total);
+  }
+
+  $("cartOpen").addEventListener("click", () => {
+    const me = store.get(ME_KEY) || {};
+    if(!$("oName").value) $("oName").value = me.name || "";
+    if(!$("oPhone").value) $("oPhone").value = me.phone || "";
+    if(!$("oAddr").value) $("oAddr").value = me.address || "";
+    form.hidden = false; $("coDone").hidden = true; say("");
+    renderCheckout();
+    dlg.showModal();
+  });
+  dlg.addEventListener("click", e => { if(e.target.closest("[data-close]") || e.target === dlg) dlg.close(); });
+  form.addEventListener("change", e => { if(e.target.name === "ful") renderCheckout(); });
+
+  function showDone(number, total){
+    form.hidden = true; $("coDone").hidden = false;
+    $("doneNum").textContent = number ? "#" + number : "";
+    $("doneText").textContent = (total ? "الإجمالي " + money(total) + " كاش. " : "") +
+      "هنكلّمك نأكد الطلب. لو حبيت تسأل عنه، قول رقم الطلب.";
+    cart = {}; saveCart(); renderMenu();
+  }
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const t = totals();
+    const name = $("oName").value.trim(), phone = $("oPhone").value.trim();
+    const address = $("oAddr").value.trim(), notes = $("oNotes").value.trim();
+    if(!name || !phone){ say("اكتب اسمك ورقم موبايلك.", "err"); return; }
+    if(!/^01\d{9}$/.test(phone)){ say("اكتب رقم موبايل مصري صحيح (11 رقم).", "err"); return; }
+    if(t.delivery && address.length < 5){ say("اكتب العنوان بالتفصيل عشان التوصيل.", "err"); return; }
+    if($("oHp").value){ showDone(); return; }
+
+    $("oBtn").disabled = true; say("بنبعت طلبك…");
+    try{
+      const r = await rpc("place_order", { p: {
+        name, phone, address, notes,
+        fulfillment: t.delivery ? "delivery" : "pickup",
+        lines: t.lines.map(l => ({ product_id: l.p.id, quantity: l.q })),
+        expected_total: t.total
+      }});
+      store.set(ME_KEY, { name, phone, address });
+      $("oNotes").value = "";
+      showDone(r.number, r.total);
+    }catch(err){
+      if(err.key === "changed" || err.key === "closed"){
+        try{ await load(); renderStatus(); renderMenu(); }catch(e2){}
+        if(err.key === "closed" || !canOrder()){ dlg.close(); return; }
+        renderCheckout();
+        say("الأسعار أو الأصناف اتغيرت، راجع طلبك قبل ما تطلب تاني.", "err");
+      }else if(err.key === "too_many_open"){
+        say("عندك ٣ طلبات لسه مفتوحة على الرقم ده. كلمنا لو محتاج تعدّل حاجة.", "err");
+      }else if(err.key === "invalid"){
+        say("راجع البيانات وجرّب تاني.", "err");
+      }else{
+        say("حصلت مشكلة في الإرسال، جرّب تاني بعد شوية.", "err");
+      }
+    }finally{
+      $("oBtn").disabled = false;
+    }
+  });
+
+  load().then(() => { renderStatus(); renderMenu(); renderCartBar(); })
+        .catch(() => { $("menuList").innerHTML = '<p class="note">مقدرناش نحمّل المنيو دلوقتي. جرّب تحدّث الصفحة بعد شوية.</p>'; });
+})();
 
 (function(){
   const form = document.getElementById("msgForm");

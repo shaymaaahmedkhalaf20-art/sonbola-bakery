@@ -1,4 +1,4 @@
--- شغّل الملف ده مرة واحدة في Supabase > SQL Editor
+-- 001: جدول رسائل فورم التواصل. شغّل ملفات sql/ بالترتيب في Supabase > SQL Editor، وكلها آمنة لو اتشغّلت تاني.
 
 create table if not exists public.messages (
   id         bigint generated always as identity primary key,
@@ -22,6 +22,6 @@ create policy "anon can insert messages"
   to anon
   with check (true);
 
--- نشيل أي صلاحيات زيادة، ونسيب الإضافة بس
+-- نشيل أي صلاحيات زيادة، ونسيب الإضافة بس (صلاحيات الأدمن بتتدّي في 002، فلو شغّلت الملف ده تاني شغّل 002 بعده)
 revoke all on public.messages from anon, authenticated;
 grant insert on public.messages to anon;

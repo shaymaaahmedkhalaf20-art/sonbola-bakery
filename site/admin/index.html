@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة التحكم — مخبز السنبله</title>
+<meta name="theme-color" content="#6b3a1e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fbf3e4;--paper:#fff9ee;--wheat:#d9993f;--gold:#f0c36b;--crust:#6b3a1e;--deep:#3b1f0f;--fire:#e2661f;--ink:#3a2414;--line:#ecd9b8;--ok:#2f7d32;--bad:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Cairo",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;min-height:100svh}
+a{color:inherit}
+h1,h2,h3{font-family:"Reem Kufi","Cairo",sans-serif;line-height:1.3;color:var(--crust)}
+[hidden]{display:none!important}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.btn{font:inherit;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 18px;border-radius:99px;border:2px solid transparent;cursor:pointer;background:var(--fire);color:#fff;text-decoration:none;white-space:nowrap}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn.sec{background:#fff;color:var(--crust);border-color:var(--line)}
+.btn.ghost{background:transparent;color:var(--crust);border-color:transparent;padding-inline:10px}
+.btn.danger{background:#fff;color:var(--bad);border-color:#f0c2bb}
+.btn.danger.sure{background:var(--bad);color:#fff}
+.btn.sm{padding:5px 12px;font-size:.9rem}
+input,select,textarea{font:inherit;font-weight:600;color:var(--ink);background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px 12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--fire)}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--fire)}
+label.f{display:grid;gap:4px;font-weight:700;color:var(--crust)}
+label.f small{font-weight:400;color:var(--ink);opacity:.7}
+label.chk{display:flex;gap:8px;align-items:center;font-weight:700;cursor:pointer}
+.msg{font-weight:700;min-height:1.6em}.msg.ok{color:var(--ok)}.msg.err{color:var(--bad)}
+.muted{opacity:.65}
+/* login */
+.login{min-height:100svh;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 20%,#ffd37a,#c9661f 45%,#3b1f0f 90%)}
+.login form{width:min(380px,100%);background:var(--paper);border-radius:26px;padding:28px 24px;display:grid;gap:14px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.login h1{text-align:center;font-size:1.8rem}
+/* app */
+header.top{background:var(--deep);color:#fff;position:sticky;top:0;z-index:20}
+header.top .wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0}
+header.top h1{color:var(--gold);font-size:1.3rem;margin-inline-end:auto}
+header.top .btn.ghost{color:#f3dcc0}
+.pause{background:#fff;color:var(--crust)}
+.pause.on{background:var(--gold);color:var(--deep)}
+nav.tabs{background:var(--crust)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
+nav.tabs a{color:#f3dcc0;text-decoration:none;font-weight:700;padding:10px 14px;border-bottom:4px solid transparent;white-space:nowrap}
+nav.tabs a.on{color:#fff;border-color:var(--gold)}
+.badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:var(--fire);color:#fff;font-size:.8rem;margin-inline-start:4px}
+main{padding:22px 0 60px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:16px}
+.bar label.f{flex:1 1 160px}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:18px}
+.stat{background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 6px 18px rgba(107,58,30,.08)}
+.stat b{display:block;font-family:"Reem Kufi";font-size:1.7rem;color:var(--fire)}
+.list{display:grid;gap:14px}
+.card{background:#fff;border-radius:20px;padding:16px 18px;box-shadow:0 8px 24px rgba(107,58,30,.1);border-inline-start:6px solid var(--line)}
+.card.st-new{border-color:var(--fire)}
+.card.st-accepted{border-color:var(--wheat)}
+.card.st-ready,.card.st-out_for_delivery{border-color:#2b7bb9}
+.card.st-completed{border-color:var(--ok);opacity:.8}
+.card.st-cancelled{border-color:#999;opacity:.6}
+.card.fresh{animation:flash 1.6s ease 2}
+@keyframes flash{50%{box-shadow:0 0 0 6px rgba(226,102,31,.35)}}
+.card-h{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.card-h .num{font-family:"Reem Kufi";font-size:1.5rem;color:var(--crust);direction:ltr}
+.pill{font-size:.85rem;font-weight:700;padding:2px 12px;border-radius:99px;background:#f4e7d2}
+.pill.new{background:var(--fire);color:#fff}
+.who{margin:6px 0;font-weight:600}
+.who a{color:var(--fire);font-weight:700;text-decoration:none;direction:ltr;display:inline-block}
+.lines{width:100%;border-collapse:collapse;margin:8px 0;font-size:.95rem}
+.lines td{padding:4px 0;border-bottom:1px dashed var(--line)}
+.lines td:last-child{text-align:left;white-space:nowrap}
+.tot{display:flex;justify-content:space-between;font-weight:900;font-size:1.1rem;color:var(--crust)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.empty{text-align:center;padding:40px 10px;opacity:.7;font-weight:700}
+/* products */
+.cat-h{display:flex;align-items:center;gap:8px;margin:26px 0 10px}
+.cat-h h2{font-size:1.4rem;margin-inline-end:auto}
+.prow{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;background:#fff;border-radius:16px;padding:10px 12px;margin-bottom:8px;box-shadow:0 4px 12px rgba(107,58,30,.07)}
+.prow.off{opacity:.6}
+.prow .ph{width:48px;height:48px;border-radius:12px;background:#f4e7d2 center/cover;display:grid;place-items:center;font-size:1.4rem}
+.prow .meta small{display:block;opacity:.7;font-weight:600}
+.prow .ops{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.sw{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:700;cursor:pointer}
+/* dialogs */
+dialog{border:0;border-radius:24px;padding:0;width:min(520px,100% - 24px);max-height:90svh;margin:auto;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(42,22,10,.55)}
+dialog form{display:grid;gap:12px;padding:22px 20px}
+.dh{display:flex;justify-content:space-between;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.eline{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.eline span{flex:1;font-weight:600}
+.eline input{width:90px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}.prow{grid-template-columns:48px 1fr}.prow .ops{grid-column:1/-1;justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<section class="login" id="loginView" hidden>
+  <form id="loginForm">
+    <h1>🌾 لوحة تحكم السنبله</h1>
+    <label class="f">الإيميل <input type="email" id="lEmail" required autocomplete="username" dir="ltr"></label>
+    <label class="f">كلمة السر <input type="password" id="lPass" required autocomplete="current-password" dir="ltr"></label>
+    <button class="btn" type="submit" id="lBtn">دخول</button>
+    <div class="msg" id="lMsg" role="status"></div>
+  </form>
+</section>
+
+<div id="appView" hidden>
+  <header class="top"><div class="wrap">
+    <h1>🌾 السنبله</h1>
+    <button class="btn sm pause" type="button" id="pauseBtn"></button>
+    <a class="btn ghost sm" href="../" target="_blank" rel="noopener">الموقع ↗</a>
+    <button class="btn ghost sm" type="button" id="logoutBtn">خروج</button>
+  </div></header>
+  <nav class="tabs"><div class="wrap">
+    <a href="#orders" data-tab="orders">الطلبات <span class="badge" id="newBadge" hidden></span></a>
+    <a href="#products" data-tab="products">الأصناف</a>
+    <a href="#messages" data-tab="messages">الرسائل <span class="badge" id="msgBadge" hidden></span></a>
+    <a href="#settings" data-tab="settings">الإعدادات</a>
+  </div></nav>
+
+  <main class="wrap">
+    <!-- الطلبات -->
+    <section id="tab-orders" hidden>
+      <div class="cards">
+        <div class="stat">طلبات النهارده<b id="tCount">—</b></div>
+        <div class="stat">اتسلّم النهارده<b id="tDone">—</b></div>
+        <div class="stat">مستني تأكيد<b id="tNew">—</b></div>
+      </div>
+      <div class="bar">
+        <label class="f">الحالة
+          <select id="fStatus">
+            <option value="open">المفتوحة (لسه ماتسلّمتش)</option>
+            <option value="all">الكل</option>
+            <option value="new">جديد</option>
+            <option value="accepted">اتأكد</option>
+            <option value="ready">جاهز</option>
+            <option value="out_for_delivery">خرج للتوصيل</option>
+            <option value="completed">اتسلّم</option>
+            <option value="cancelled">اتلغى</option>
+          </select>
+        </label>
+        <label class="f">اليوم <input type="date" id="fDate"></label>
+        <button class="btn sec" type="button" id="fClear">كل الأيام</button>
+      </div>
+      <div class="list" id="orderList"></div>
+    </section>
+
+    <!-- الأصناف -->
+    <section id="tab-products" hidden>
+      <div class="bar">
+        <button class="btn" type="button" id="addProduct">+ صنف جديد</button>
+        <button class="btn sec" type="button" id="addCat">+ قسم جديد</button>
+      </div>
+      <div id="productList"></div>
+    </section>
+
+    <!-- الرسائل -->
+    <section id="tab-messages" hidden>
+      <div class="bar">
+        <label class="f">عرض
+          <select id="mFilter"><option value="open">اللي لسه ماتعاملناش معاها</option><option value="all">كل الرسائل</option></select>
+        </label>
+      </div>
+      <div class="list" id="messageList"></div>
+    </section>
+
+    <!-- الإعدادات -->
+    <section id="tab-settings" hidden>
+      <form id="setForm" class="card" style="display:grid;gap:14px;max-width:560px">
+        <h2>المواعيد والطلبات</h2>
+        <div class="grid2">
+          <label class="f">بنفتح الساعة <input type="time" id="sOpen" required></label>
+          <label class="f">بنقفل الساعة <small>00:00 = نص الليل</small><input type="time" id="sClose" required></label>
+        </div>
+        <label class="chk"><input type="checkbox" id="sPaused"> إيقاف الطلبات مؤقتاً (حتى في المواعيد)</label>
+        <label class="f">مصاريف التوصيل (جنيه) <small>0 = توصيل مجاني</small><input type="number" id="sFee" min="0" step="0.5" required></label>
+        <label class="f">إيميل إشعارات الطلبات
+          <small>من غير دومين خاص، Resend بيبعت بس لنفس الإيميل اللي اتعمل بيه حساب Resend. سيبه فاضي لو مش عايز إيميلات.</small>
+          <input type="email" id="sEmail" dir="ltr" placeholder="name@example.com">
+        </label>
+        <button class="btn" type="submit" id="sBtn">حفظ</button>
+        <div class="msg" id="sMsg" role="status"></div>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- تعديل أصناف طلب -->
+<dialog id="editDlg">
+  <form id="editForm">
+    <div class="dh"><h2 id="editTitle"></h2><button class="btn ghost" type="button" data-close>✕</button></div>
+    <p class="muted">الأصناف اللي كانت في الطلب بتفضل بسعرها وقت الطلب، والجديدة بالسعر الحالي.</p>
+    <div id="editLines"></div>
+    <div class="grid2">
+      <select id="editAdd"></select>
+      <button class="btn sec" type="button" id="editAddBtn">+ أضف للطلب</button>
+    </div>
+    <button class="btn" type="submit" id="editSave">حفظ التعديل</button>
+    <div class="msg" id="editMsg" role="status"></div>
+  </form>
+</dialog>
+
+<!-- صنف -->
+<dialog id="prodDlg">
+  <form id="prodForm">
+    <div class="dh"><h2 id="prodTitle"></h2><button class="btn ghost" type="button" data-close>✕</button></div>
+    <label class="f">اسم الصنف <input id="pName" required maxlength="60"></label>
+    <label class="f">القسم <select id="pCat" required></select></label>
+    <div class="grid2">
+      <label class="f">السعر (جنيه) <input type="number" id="pPrice" min="0.5" step="0.5" required></label>
+      <label class="f">وحدة البيع <small>اللي السعر بتاعها</small>
+        <input id="pUnit" maxlength="30" list="units" placeholder="الحبّة">
+        <datalist id="units"><option value="الحبّة"><option value="الربطة"><option value="الباكو"><option value="الكيلو"><option value="العلبة"></datalist>
+      </label>
+    </div>
+    <div class="grid2">
+      <label class="f">أقل كمية للطلب
+        <select id="pStep"><option value="1">1 (واحدة واحدة)</option><option value="0.5">½ (نص نص)</option><option value="0.25">¼ (ربع ربع، للكيلو)</option></select>
+      </label>
+      <label class="f">الترتيب <small>الأصغر الأول</small><input type="number" id="pSort" step="1" value="0"></label>
+    </div>
+    <label class="chk"><input type="checkbox" id="pAvail" checked> متاح للطلب</label>
+    <label class="f">صورة <small>اختياري، JPG أو PNG أو WEBP، أقل من 2 ميجا</small><input type="file" id="pPhoto" accept="image/jpeg,image/png,image/webp"></label>
+    <label class="chk" id="pNoPhotoWrap" hidden><input type="checkbox" id="pNoPhoto"> شيل الصورة الحالية</label>
+    <button class="btn" type="submit" id="pSave">حفظ</button>
+    <div class="msg" id="pMsg" role="status"></div>
+  </form>
+</dialog>
+
+<!-- قسم -->
+<dialog id="catDlg">
+  <form id="catForm">
+    <div class="dh"><h2 id="catTitle"></h2><button class="btn ghost" type="button" data-close>✕</button></div>
+    <div class="grid2">
+      <label class="f">اسم القسم <input id="cName" required maxlength="40"></label>
+      <label class="f">إيموجي <input id="cEmoji" maxlength="8" placeholder="🥖"></label>
+    </div>
+    <button class="btn" type="submit" id="cSave">حفظ</button>
+    <div class="msg" id="cMsg" role="status"></div>
+  </form>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="../config.js"></script>
+<script>
+/* لوحة التحكم. كل الصلاحيات متحكَّم فيها من قاعدة البيانات (sql/002): الصفحة دي مجرد واجهة. */
+(function(){
+  const sb = supabase.createClient(SONBOLA.url, SONBOLA.key);
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const money = n => +(+n).toFixed(2) + " ج";
+  const FRAC = { 0.25: "¼", 0.5: "½", 0.75: "¾" };
+  const qtyText = q => { q = +q; const w = Math.floor(q + 1e-9), f = +(q - w).toFixed(3); return f ? (w || "") + (FRAC[f] || "." + String(f).slice(2)) : String(w); };
+  const say = (el, t, c) => { el.textContent = t || ""; el.className = "msg " + (c || ""); };
+  const when = d => new Intl.DateTimeFormat("ar-EG-u-nu-latn", { timeZone: "Africa/Cairo", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(new Date(d));
+  const cairoDay = d => new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Cairo" }).format(d || new Date());
+  function dayRange(day){
+    const off = new Intl.DateTimeFormat("en-US", { timeZone: "Africa/Cairo", timeZoneName: "longOffset" })
+      .formatToParts(new Date(day + "T12:00:00Z")).find(p => p.type === "timeZoneName").value.replace("GMT", "") || "+00:00";
+    const start = new Date(day + "T00:00:00" + off);
+    return [start.toISOString(), new Date(start.getTime() + 864e5).toISOString()];
+  }
+  const STATUS = { new: "جديد", accepted: "اتأكد", ready: "جاهز", out_for_delivery: "خرج للتوصيل", completed: "اتسلّم", cancelled: "اتلغى" };
+  const ERR = e => (e && (e.message || e.code)) || "";
+
+  /* زرار بيتأكد مرتين قبل الحاجات اللي مالهاش رجوع (إلغاء، مسح) */
+  function twoStep(btn, label, run){
+    if(btn.classList.contains("sure")) return run();
+    const old = btn.textContent; btn.classList.add("sure"); btn.textContent = label;
+    setTimeout(() => { btn.classList.remove("sure"); btn.textContent = old; }, 3500);
+  }
+
+  /* ---------- الدخول ---------- */
+  let started = false;
+  async function enter(session){
+    if(!session){ $("appView").hidden = true; $("loginView").hidden = false; return; }
+    const { data: ok, error } = await sb.rpc("is_admin");
+    if(error || !ok){
+      await sb.auth.signOut();
+      say($("lMsg"), "الحساب ده مش أدمن. لازم الإيميل يتضاف في جدول admins.", "err");
+      return;
+    }
+    $("loginView").hidden = true; $("appView").hidden = false;
+    if(!started){ started = true; boot(); }
+  }
+  $("loginForm").addEventListener("submit", async e => {
+    e.preventDefault(); $("lBtn").disabled = true; say($("lMsg"), "");
+    const { data, error } = await sb.auth.signInWithPassword({ email: $("lEmail").value.trim(), password: $("lPass").value });
+    $("lBtn").disabled = false;
+    if(error){ say($("lMsg"), "الإيميل أو كلمة السر غلط.", "err"); return; }
+    $("lPass").value = ""; enter(data.session);
+  });
+  $("logoutBtn").addEventListener("click", async () => { await sb.auth.signOut(); location.hash = ""; location.reload(); });
+  sb.auth.getSession().then(({ data }) => enter(data.session));
+
+  /* ---------- التابات ---------- */
+  function route(){
+    const tab = (location.hash.slice(1) || "orders").split("/")[0];
+    const name = ["orders", "products", "messages", "settings"].includes(tab) ? tab : "orders";
+    document.querySelectorAll("main > section").forEach(s => s.hidden = s.id !== "tab-" + name);
+    document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.tab === name));
+  }
+  window.addEventListener("hashchange", route);
+  document.addEventListener("click", e => { const d = e.target.closest("dialog"); if(e.target.closest("[data-close]") && d) d.close(); });
+
+  /* ---------- الإعدادات + زرار الإيقاف ---------- */
+  let settings = null;
+  async function loadSettings(){
+    const { data, error } = await sb.from("settings").select("*").eq("id", true).single();
+    if(error) return;
+    settings = data;
+    $("sOpen").value = data.opens_at.slice(0, 5); $("sClose").value = data.closes_at.slice(0, 5);
+    $("sPaused").checked = data.ordering_paused; $("sFee").value = +data.delivery_fee; $("sEmail").value = data.notification_email || "";
+    const pb = $("pauseBtn");
+    pb.classList.toggle("on", data.ordering_paused);
+    pb.textContent = data.ordering_paused ? "▶️ الطلبات متوقفة · شغّلها" : "⏸️ إيقاف الطلبات";
+  }
+  $("pauseBtn").addEventListener("click", async () => {
+    $("pauseBtn").disabled = true;
+    await sb.from("settings").update({ ordering_paused: !settings.ordering_paused, updated_at: new Date().toISOString() }).eq("id", true);
+    await loadSettings(); $("pauseBtn").disabled = false;
+  });
+  $("setForm").addEventListener("submit", async e => {
+    e.preventDefault(); $("sBtn").disabled = true;
+    const { error } = await sb.from("settings").update({
+      opens_at: $("sOpen").value, closes_at: $("sClose").value, ordering_paused: $("sPaused").checked,
+      delivery_fee: +$("sFee").value || 0, notification_email: $("sEmail").value.trim().toLowerCase() || null,
+      updated_at: new Date().toISOString()
+    }).eq("id", true);
+    $("sBtn").disabled = false;
+    if(error){ say($("sMsg"), "مااتحفظش: راجع البيانات (الإيميل لازم يكون صحيح).", "err"); return; }
+    say($("sMsg"), "اتحفظ ✓", "ok"); loadSettings();
+  });
+
+  /* ---------- الطلبات ---------- */
+  let orders = [], freshIds = new Set();
+  async function loadOrders(){
+    let q = sb.from("orders").select("*, order_lines(*)").order("created_at", { ascending: false }).limit(200);
+    const st = $("fStatus").value, day = $("fDate").value;
+    if(st === "open") q = q.not("status", "in", "(completed,cancelled)");
+    else if(st !== "all") q = q.eq("status", st);
+    if(day){ const [a, b] = dayRange(day); q = q.gte("created_at", a).lt("created_at", b); }
+    const { data, error } = await q;
+    if(error){ $("orderList").innerHTML = '<div class="empty">مقدرناش نحمّل الطلبات.</div>'; return; }
+    orders = data; renderOrders();
+  }
+  async function loadToday(){
+    const [a, b] = dayRange(cairoDay());
+    const { data } = await sb.from("orders").select("status,total").gte("created_at", a).lt("created_at", b);
+    const { count } = await sb.from("orders").select("id", { count: "exact", head: true }).eq("status", "new");
+    if(data){
+      $("tCount").textContent = data.filter(o => o.status !== "cancelled").length;
+      $("tDone").textContent = money(data.filter(o => o.status === "completed").reduce((s, o) => s + +o.total, 0));
+    }
+    $("tNew").textContent = count ?? "—";
+    $("newBadge").hidden = !count; $("newBadge").textContent = count || "";
+  }
+  function actions(o){
+    const b = (to, label, cls) => '<button class="btn sm ' + (cls || "") + '" data-status="' + to + '" data-id="' + o.id + '">' + label + '</button>';
+    const edit = '<button class="btn sm sec" data-edit="' + o.id + '">✏️ عدّل الأصناف</button>';
+    const cancel = b("cancelled", "إلغاء", "danger");
+    switch(o.status){
+      case "new": return b("accepted", "✓ أكّد الطلب") + edit + cancel;
+      case "accepted": return (o.fulfillment === "pickup" ? b("ready", "جاهز للاستلام") : b("out_for_delivery", "🛵 خرج للتوصيل")) + edit + cancel;
+      case "ready": case "out_for_delivery": return b("completed", "✓ اتسلّم واتدفع") + cancel;
+      default: return "";
+    }
+  }
+  function renderOrders(){
+    const box = $("orderList");
+    if(!orders.length){ box.innerHTML = '<div class="empty">مفيش طلبات هنا.</div>'; return; }
+    box.innerHTML = orders.map(o => {
+      const lines = [...o.order_lines].sort((a, b) => a.id - b.id);
+      return '<article class="card st-' + o.status + (freshIds.has(o.id) ? " fresh" : "") + '">' +
+        '<div class="card-h"><span class="num">#' + o.number + '</span><span class="pill ' + (o.status === "new" ? "new" : "") + '">' + STATUS[o.status] + '</span>' +
+        '<span class="pill">' + (o.fulfillment === "delivery" ? "🛵 توصيل" : "🏪 استلام") + '</span><span class="muted">' + when(o.created_at) + '</span></div>' +
+        '<div class="who">' + esc(o.customer_name) + ' · <a href="tel:' + o.phone + '">' + o.phone + '</a> · <a href="https://wa.me/2' + o.phone + '" target="_blank" rel="noopener">واتساب</a>' +
+        (o.address ? '<br>📍 ' + esc(o.address) : "") + (o.notes ? '<br>📝 ' + esc(o.notes) : "") + '</div>' +
+        '<table class="lines">' + lines.map(l => '<tr><td>' + esc(l.product_name) + ' <span class="muted">' + qtyText(l.quantity) + " " + esc(l.unit_label.replace(/^ال/, "")) +
+          ' × ' + money(l.unit_price) + '</span></td><td>' + money(l.line_total) + '</td></tr>').join("") +
+        (+o.delivery_fee ? '<tr><td>التوصيل</td><td>' + money(o.delivery_fee) + '</td></tr>' : "") + '</table>' +
+        '<div class="tot"><span>الإجمالي كاش</span><span>' + money(o.total) + '</span></div>' +
+        '<div class="acts">' + actions(o) + '</div><div class="msg" data-omsg="' + o.id + '"></div></article>';
+    }).join("");
+  }
+  $("orderList").addEventListener("click", async e => {
+    const sBtn = e.target.closest("[data-status]"), eBtn = e.target.closest("[data-edit]");
+    if(eBtn) return openEdit(+eBtn.dataset.edit);
+    if(!sBtn) return;
+    const go = async () => {
+      sBtn.disabled = true;
+      const { error } = await sb.rpc("set_order_status", { p_order_id: +sBtn.dataset.id, p_status: sBtn.dataset.status });
+      if(error){ sBtn.disabled = false; say(document.querySelector('[data-omsg="' + sBtn.dataset.id + '"]'), "مااتغيرش: " + ERR(error), "err"); return; }
+      freshIds.delete(+sBtn.dataset.id); loadOrders(); loadToday();
+    };
+    if(sBtn.dataset.status === "cancelled") twoStep(sBtn, "متأكد؟ اضغط تاني للإلغاء", go); else go();
+  });
+  ["fStatus", "fDate"].forEach(id => $(id).addEventListener("change", loadOrders));
+  $("fClear").addEventListener("click", () => { $("fDate").value = ""; loadOrders(); });
+
+  /* تعديل أصناف طلب */
+  let editing = null;
+  function openEdit(id){
+    const o = orders.find(x => x.id === id); if(!o) return;
+    editing = { order: o, lines: o.order_lines.map(l => ({ product_id: l.product_id, name: l.product_name, quantity: +l.quantity, step: products.get(l.product_id)?.qty_step || 0.25 })) };
+    $("editTitle").textContent = "تعديل طلب #" + o.number;
+    $("editAdd").innerHTML = '<option value="">اختار صنف…</option>' + [...products.values()].map(p => '<option value="' + p.id + '">' + esc(p.name) + ' — ' + money(p.price) + '</option>').join("");
+    say($("editMsg"), ""); renderEdit(); $("editDlg").showModal();
+  }
+  function renderEdit(){
+    $("editLines").innerHTML = editing.lines.map((l, i) =>
+      '<div class="eline"><span>' + esc(l.name) + '</span><input type="number" min="0" step="' + l.step + '" value="' + l.quantity + '" data-i="' + i + '" aria-label="الكمية"></div>').join("") ||
+      '<p class="muted">مفيش أصناف. أضف صنف على الأقل.</p>';
+  }
+  $("editLines").addEventListener("input", e => { const i = e.target.dataset.i; if(i != null) editing.lines[i].quantity = +e.target.value; });
+  $("editAddBtn").addEventListener("click", () => {
+    const p = products.get(+$("editAdd").value); if(!p) return;
+    if(!editing.lines.some(l => l.product_id === p.id)) editing.lines.push({ product_id: p.id, name: p.name, quantity: p.qty_step, step: p.qty_step });
+    renderEdit();
+  });
+  $("editForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const lines = editing.lines.filter(l => l.quantity > 0).map(l => ({ product_id: l.product_id, quantity: l.quantity }));
+    if(!lines.length){ say($("editMsg"), "لازم صنف واحد على الأقل. لو الطلب كله اتلغى استخدم زرار الإلغاء.", "err"); return; }
+    $("editSave").disabled = true;
+    const { error } = await sb.rpc("update_order_lines", { p_order_id: editing.order.id, p_lines: lines });
+    $("editSave").disabled = false;
+    if(error){ say($("editMsg"), "مااتحفظش: راجع الكميات (لازم تمشي على أقل كمية للصنف).", "err"); return; }
+    $("editDlg").close(); loadOrders(); loadToday();
+  });
+
+  /* ---------- الأصناف والأقسام ---------- */
+  let cats = [], products = new Map();
+  async function loadProducts(){
+    const [c, p] = await Promise.all([
+      sb.from("categories").select("*").order("sort_order").order("id"),
+      sb.from("products").select("*").order("sort_order").order("id")
+    ]);
+    cats = c.data || []; products = new Map((p.data || []).map(x => [x.id, { ...x, price: +x.price, qty_step: +x.qty_step }]));
+    renderProducts();
+  }
+  function renderProducts(){
+    $("productList").innerHTML = cats.map((c, i) => {
+      const list = [...products.values()].filter(p => p.category_id === c.id);
+      return '<div class="cat-h"><h2>' + esc(c.emoji) + ' ' + esc(c.name) + '</h2>' +
+        '<button class="btn ghost sm" data-cmove="' + c.id + '" data-dir="-1" ' + (i ? "" : "disabled") + ' aria-label="لفوق">▲</button>' +
+        '<button class="btn ghost sm" data-cmove="' + c.id + '" data-dir="1" ' + (i < cats.length - 1 ? "" : "disabled") + ' aria-label="لتحت">▼</button>' +
+        '<button class="btn sec sm" data-cedit="' + c.id + '">تعديل</button><button class="btn danger sm" data-cdel="' + c.id + '">مسح</button></div>' +
+        '<div data-cmsg="' + c.id + '" class="msg"></div>' +
+        (list.map(p => '<div class="prow' + (p.available ? "" : " off") + '">' +
+          '<div class="ph" style="' + (p.photo_url ? "background-image:url('" + esc(p.photo_url) + "')" : "") + '">' + (p.photo_url ? "" : esc(c.emoji || "🥖")) + '</div>' +
+          '<div class="meta"><b>' + esc(p.name) + '</b><small>' + money(p.price) + (p.unit_label ? " / " + esc(p.unit_label) : "") +
+            (p.qty_step !== 1 ? " · أقل كمية " + qtyText(p.qty_step) : "") + '</small></div>' +
+          '<div class="ops"><label class="sw"><input type="checkbox" data-avail="' + p.id + '"' + (p.available ? " checked" : "") + '> ' + (p.available ? "متاح" : "خلص النهارده") + '</label>' +
+          '<button class="btn sec sm" data-pedit="' + p.id + '">تعديل</button><button class="btn danger sm" data-pdel="' + p.id + '">مسح</button></div>' +
+          '<div class="msg" data-pmsg="' + p.id + '" style="grid-column:1/-1"></div></div>').join("") || '<p class="muted">مفيش أصناف في القسم ده.</p>');
+    }).join("") || '<div class="empty">مفيش أقسام. ابدأ بقسم جديد.</div>';
+  }
+  $("productList").addEventListener("change", async e => {
+    const id = e.target.dataset.avail; if(!id) return;
+    await sb.from("products").update({ available: e.target.checked }).eq("id", +id);
+    loadProducts();
+  });
+  $("productList").addEventListener("click", async e => {
+    const t = e.target.closest("button"); if(!t) return;
+    const d = t.dataset;
+    if(d.pedit) return openProduct(products.get(+d.pedit));
+    if(d.cedit) return openCat(cats.find(c => c.id === +d.cedit));
+    if(d.pdel) return twoStep(t, "متأكد؟ اضغط تاني", async () => {
+      const { error } = await sb.from("products").delete().eq("id", +d.pdel);
+      if(error) return say(document.querySelector('[data-pmsg="' + d.pdel + '"]'),
+        error.code === "23503" ? "الصنف ده اتطلب قبل كده فمينفعش يتمسح. خليه «خلص النهارده» بدل كده." : "مااتمسحش.", "err");
+      loadProducts();
+    });
+    if(d.cdel) return twoStep(t, "متأكد؟ اضغط تاني", async () => {
+      const { error } = await sb.from("categories").delete().eq("id", +d.cdel);
+      if(error) return say(document.querySelector('[data-cmsg="' + d.cdel + '"]'),
+        error.code === "23503" ? "القسم فيه أصناف. انقلها أو امسحها الأول." : "مااتمسحش.", "err");
+      loadProducts();
+    });
+    if(d.cmove){
+      const i = cats.findIndex(c => c.id === +d.cmove), j = i + +d.dir;
+      if(j < 0 || j >= cats.length) return;
+      const order = cats.map(c => c.id); [order[i], order[j]] = [order[j], order[i]];
+      await Promise.all(order.map((id, k) => sb.from("categories").update({ sort_order: k + 1 }).eq("id", id)));
+      loadProducts();
+    }
+  });
+
+  let editingProduct = null;
+  function openProduct(p){
+    if(!cats.length){ alertMsg(); return; }
+    editingProduct = p || null;
+    $("prodTitle").textContent = p ? "تعديل صنف" : "صنف جديد";
+    $("pCat").innerHTML = cats.map(c => '<option value="' + c.id + '">' + esc(c.emoji + " " + c.name) + '</option>').join("");
+    $("pName").value = p ? p.name : ""; $("pCat").value = p ? p.category_id : cats[0].id;
+    $("pPrice").value = p ? p.price : ""; $("pUnit").value = p ? p.unit_label : "";
+    $("pStep").value = String(p ? p.qty_step : 1); $("pSort").value = p ? p.sort_order : 0;
+    $("pAvail").checked = p ? p.available : true; $("pPhoto").value = "";
+    $("pNoPhotoWrap").hidden = !(p && p.photo_url); $("pNoPhoto").checked = false;
+    say($("pMsg"), ""); $("prodDlg").showModal();
+  }
+  function alertMsg(){ $("productList").insertAdjacentHTML("afterbegin", '<p class="msg err">اعمل قسم الأول.</p>'); }
+  $("addProduct").addEventListener("click", () => openProduct(null));
+  $("prodForm").addEventListener("submit", async e => {
+    e.preventDefault(); $("pSave").disabled = true; say($("pMsg"), "بنحفظ…");
+    try{
+      const row = { name: $("pName").value.trim(), category_id: +$("pCat").value, price: +$("pPrice").value,
+                    unit_label: $("pUnit").value.trim(), qty_step: +$("pStep").value, sort_order: +$("pSort").value || 0,
+                    available: $("pAvail").checked };
+      const file = $("pPhoto").files[0];
+      if(file){
+        if(file.size > 2 * 1024 * 1024) throw new Error("الصورة أكبر من 2 ميجا.");
+        const path = Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + (file.type.split("/")[1] || "jpg");
+        const up = await sb.storage.from("product-photos").upload(path, file, { contentType: file.type });
+        if(up.error) throw new Error("الصورة مااترفعتش.");
+        row.photo_url = sb.storage.from("product-photos").getPublicUrl(path).data.publicUrl;
+      }else if($("pNoPhoto").checked){ row.photo_url = null; }
+      const { error } = editingProduct
+        ? await sb.from("products").update(row).eq("id", editingProduct.id)
+        : await sb.from("products").insert(row);
+      if(error) throw new Error("مااتحفظش: راجع الاسم والسعر.");
+      $("prodDlg").close(); loadProducts();
+    }catch(err){ say($("pMsg"), err.message, "err"); }
+    finally{ $("pSave").disabled = false; }
+  });
+
+  let editingCat = null;
+  function openCat(c){
+    editingCat = c || null;
+    $("catTitle").textContent = c ? "تعديل قسم" : "قسم جديد";
+    $("cName").value = c ? c.name : ""; $("cEmoji").value = c ? c.emoji : "";
+    say($("cMsg"), ""); $("catDlg").showModal();
+  }
+  $("addCat").addEventListener("click", () => openCat(null));
+  $("catForm").addEventListener("submit", async e => {
+    e.preventDefault(); $("cSave").disabled = true;
+    const row = { name: $("cName").value.trim(), emoji: $("cEmoji").value.trim() };
+    if(!editingCat) row.sort_order = cats.length + 1;
+    const { error } = editingCat ? await sb.from("categories").update(row).eq("id", editingCat.id) : await sb.from("categories").insert(row);
+    $("cSave").disabled = false;
+    if(error){ say($("cMsg"), error.code === "23505" ? "فيه قسم بنفس الاسم." : "مااتحفظش.", "err"); return; }
+    $("catDlg").close(); loadProducts();
+  });
+
+  /* ---------- الرسائل ---------- */
+  async function loadMessages(){
+    let q = sb.from("messages").select("*").order("created_at", { ascending: false }).limit(200);
+    if($("mFilter").value === "open") q = q.eq("handled", false);
+    const { data, error } = await q;
+    const box = $("messageList");
+    if(error){ box.innerHTML = '<div class="empty">مقدرناش نحمّل الرسائل.</div>'; return; }
+    box.innerHTML = data.map(m => '<article class="card ' + (m.handled ? "st-completed" : "st-new") + '">' +
+      '<div class="card-h"><b>' + esc(m.name) + '</b><a class="who" style="color:var(--fire);direction:ltr" href="tel:' + esc(m.phone) + '">' + esc(m.phone) + '</a>' +
+      '<span class="muted">' + when(m.created_at) + '</span>' + (m.contact_ok ? '<span class="pill">موافق على العروض</span>' : "") + '</div>' +
+      '<p style="margin:8px 0;white-space:pre-wrap">' + esc(m.message) + '</p>' +
+      '<div class="acts"><button class="btn sm ' + (m.handled ? "sec" : "") + '" data-handled="' + m.id + '" data-v="' + !m.handled + '">' +
+      (m.handled ? "رجّعها مش متعامل معاها" : "✓ اتعاملت معاها") + '</button></div></article>').join("") || '<div class="empty">مفيش رسائل هنا.</div>';
+    loadMsgCount();
+  }
+  async function loadMsgCount(){
+    const { count } = await sb.from("messages").select("id", { count: "exact", head: true }).eq("handled", false);
+    $("msgBadge").hidden = !count; $("msgBadge").textContent = count || "";
+  }
+  $("messageList").addEventListener("click", async e => {
+    const b = e.target.closest("[data-handled]"); if(!b) return;
+    b.disabled = true;
+    await sb.from("messages").update({ handled: b.dataset.v === "true" }).eq("id", +b.dataset.handled);
+    loadMessages();
+  });
+  $("mFilter").addEventListener("change", loadMessages);
+
+  /* ---------- تنبيه الطلبات الجديدة ---------- */
+  let unseen = 0;
+  const baseTitle = document.title;
+  function beep(){
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [0, .25, .5].forEach((t, i) => { const o = ctx.createOscillator(), g = ctx.createGain();
+        o.frequency.value = [880, 1175, 1568][i]; g.gain.setValueAtTime(.25, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + t + .22);
+        o.connect(g).connect(ctx.destination); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .25); });
+    }catch(e){}
+  }
+  document.addEventListener("visibilitychange", () => { if(!document.hidden){ unseen = 0; document.title = baseTitle; } });
+  function live(){
+    sb.channel("admin-live")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "orders" }, p => {
+        freshIds.add(p.new.id); beep();
+        if(document.hidden){ unseen++; document.title = "(" + unseen + ") طلب جديد · " + baseTitle; }
+        loadOrders(); loadToday();
+      })
+      .on("postgres_changes", { event: "UPDATE", schema: "public", table: "orders" }, () => { loadOrders(); loadToday(); })
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, () => { loadMsgCount(); if(!$("tab-messages").hidden) loadMessages(); })
+      .subscribe();
+  }
+
+  function boot(){
+    route();
+    loadSettings(); loadProducts(); loadOrders(); loadToday(); loadMessages(); live();
+    setInterval(() => { loadToday(); }, 60000);
+  }
+})();
+</script>
+</body>
+</html>
