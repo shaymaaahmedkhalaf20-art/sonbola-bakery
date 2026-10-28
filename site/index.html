@@ -142,6 +142,21 @@ body.has-cart .dock{display:none}
 .done .big-ico{font-size:4rem}
 .done .num{font-family:"Reem Kufi";font-size:2.6rem;color:var(--fire);direction:ltr}
 .sheet .btn[disabled]{opacity:.6;cursor:wait}
+
+/* account */
+.acct{position:absolute;top:16px;inset-inline-end:16px;z-index:5;font:inherit;font-weight:700;color:#fff;background:rgba(255,249,238,.16);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px);padding:8px 18px;border-radius:99px;cursor:pointer}
+.acct:hover{background:rgba(255,249,238,.28)}
+.sheet form.sub{display:grid;gap:14px}
+.my-order{background:#fff;border-radius:16px;padding:12px 14px;display:grid;gap:4px;font-weight:600}
+.my-order .mo-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.my-order .mo-h b{font-family:"Reem Kufi";font-size:1.3rem;color:var(--crust);direction:ltr}
+.my-order small{opacity:.7;font-weight:400}
+.st{font-size:.85rem;font-weight:700;padding:2px 12px;border-radius:99px;background:#f4e7d2;color:var(--crust)}
+.st.new{background:#fff1e6;color:var(--fire)}
+.st.ready,.st.out_for_delivery{background:#e3f0fa;color:#1f5f8f}
+.st.completed{background:#e6f3e6;color:#2f7d32}
+.st.cancelled{background:#eee;color:#777}
+.linkish{font:inherit;font-weight:700;color:var(--fire);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
 @media (min-width:760px){.sheet{margin:auto;border-radius:28px}}
 
 /* gallery strip */
@@ -221,6 +236,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
     <svg class="wheat w1" viewBox="0 0 120 400" fill="none"><path d="M60 400 C58 300 62 200 60 60" stroke="#e8b659" stroke-width="5" stroke-linecap="round"/><g fill="#f0c36b"><ellipse cx="44" cy="70" rx="9" ry="20" transform="rotate(-25 44 70)"/><ellipse cx="76" cy="70" rx="9" ry="20" transform="rotate(25 76 70)"/><ellipse cx="42" cy="110" rx="9" ry="20" transform="rotate(-25 42 110)"/><ellipse cx="78" cy="110" rx="9" ry="20" transform="rotate(25 78 110)"/><ellipse cx="42" cy="150" rx="9" ry="20" transform="rotate(-25 42 150)"/><ellipse cx="78" cy="150" rx="9" ry="20" transform="rotate(25 78 150)"/><ellipse cx="60" cy="38" rx="9" ry="22"/></g></svg>
     <svg class="wheat w2" viewBox="0 0 120 400" fill="none"><path d="M60 400 C62 300 58 200 60 60" stroke="#e8b659" stroke-width="5" stroke-linecap="round"/><g fill="#f0c36b"><ellipse cx="44" cy="70" rx="9" ry="20" transform="rotate(-25 44 70)"/><ellipse cx="76" cy="70" rx="9" ry="20" transform="rotate(25 76 70)"/><ellipse cx="42" cy="110" rx="9" ry="20" transform="rotate(-25 42 110)"/><ellipse cx="78" cy="110" rx="9" ry="20" transform="rotate(25 78 110)"/><ellipse cx="42" cy="150" rx="9" ry="20" transform="rotate(-25 42 150)"/><ellipse cx="78" cy="150" rx="9" ry="20" transform="rotate(25 78 150)"/><ellipse cx="60" cy="38" rx="9" ry="22"/></g></svg>
   </div>
+  <button class="acct" type="button" id="acctBtn" hidden>👤 دخول</button>
   <div class="steam" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="wrap hero-inner">
     <span class="badge">🥖 طازة كل يوم</span>
@@ -254,7 +270,39 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
     <h2 class="title rv">اختار اللي نفسك فيه</h2>
     <p class="lead rv">الأسعار بالجنيه المصري. اختار الكمية واطلب أونلاين، والدفع كاش عند الاستلام.</p>
     <div class="shop-status" id="shopStatus" role="status" hidden></div>
-    <div id="menuList"><p class="note">بنحمّل المنيو…</p></div>
+    <!-- المنيو ده بيظهر على طول، ولما قاعدة البيانات ترد بيتبدّل بالأسعار الحالية وزراير الطلب. لو اتغير صنف أو سعر من لوحة التحكم، عدّله هنا كمان. -->
+    <div id="menuList">
+      <div class="menu-block rv" style="margin-top:44px">
+        <div class="menu-photo cat-art"><i aria-hidden="true">🌾</i><span>العيش</span></div>
+        <div class="menu-list">
+          <div class="item"><span>عيش فينو <small>الحبّة</small></span><b>3 ج</b></div>
+          <div class="item"><span>عيش شامي <small>الربطة</small></span><b>15 ج</b></div>
+          <div class="item"><span>عيش توست <small>الباكو</small></span><b>40 ج</b></div>
+          <div class="item"><span>عيش بلدي فلاحي <small>ربطة ٥ أرغفة</small></span><b>10 ج</b></div>
+        </div>
+      </div>
+      <div class="menu-block flip rv" style="margin-top:28px">
+        <div class="menu-photo cat-art"><i aria-hidden="true">🥐</i><span>المخبوزات</span></div>
+        <div class="menu-list">
+          <div class="item"><span>كرواسون سادة</span><b>20 ج</b></div>
+          <div class="item"><span>كرواسون بالجبنة</span><b>30 ج</b></div>
+          <div class="item"><span>فطيرة مشلتتة <small>الحبّة</small></span><b>60 ج</b></div>
+          <div class="item"><span>بيتزا مخبوزة</span><b>45 ج</b></div>
+        </div>
+      </div>
+      <div class="menu-block rv" style="margin-top:28px">
+        <div class="menu-photo cat-art"><i aria-hidden="true">🍰</i><span>الحلويات</span></div>
+        <div class="menu-list">
+          <div class="item"><span>كيكة سادة</span><b>70 ج</b></div>
+          <div class="item"><span>كيكة بالشوكولاتة</span><b>70 ج</b></div>
+          <div class="item"><span>بقلاوة <small>الكيلو</small></span><b>200 ج</b></div>
+          <div class="item"><span>بسبوسة <small>الكيلو</small></span><b>200 ج</b></div>
+          <div class="item"><span>كحك <small>الكيلو</small></span><b>220 ج</b></div>
+          <div class="item"><span>بيتي فور <small>الكيلو</small></span><b>220 ج</b></div>
+          <div class="item"><span>بسكوت بالسمنة <small>الكيلو</small></span><b>180 ج</b></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -362,6 +410,7 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
       <textarea id="oNotes" maxlength="500" placeholder="مثلاً: عايزه الساعة ٥" style="min-height:70px"></textarea>
     </label>
     <label class="hp" aria-hidden="true">لا تملأ هذا الحقل <input type="text" id="oHp" tabindex="-1" autocomplete="off"></label>
+    <p class="note" id="coAcct" style="margin:0" hidden></p>
     <div class="sum">
       <div><span>الأصناف</span><span id="sSub"></span></div>
       <div id="sFeeRow" hidden><span>التوصيل</span><span id="sFee"></span></div>
@@ -377,6 +426,26 @@ footer b{color:var(--gold);font-family:"Reem Kufi";font-size:1.3rem}
     <div id="doneNum" class="num"></div>
     <p id="doneText"></p>
     <button class="btn btn-fire" type="button" data-close>تمام</button>
+  </div>
+</dialog>
+
+<dialog class="sheet" id="acct" aria-labelledby="acTitle">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2 id="acTitle">حسابي</h2><button type="button" class="x" data-close aria-label="قفل">✕</button></div>
+    <form class="sub" id="acLogin" novalidate>
+      <p>ادخل بإيميلك عشان تتابع طلباتك وبياناتك تتحفظ للمرة الجاية. مش محتاج كلمة سر: هنبعتلك لينك على الإيميل تضغط عليه.</p>
+      <label class="field">الإيميل
+        <input type="email" id="acEmail" required maxlength="254" autocomplete="email" dir="ltr" style="text-align:right">
+      </label>
+      <button class="btn btn-fire" type="submit" id="acBtn" style="justify-content:center">ابعتلي لينك الدخول</button>
+      <div class="form-status" id="acStatus" role="status" aria-live="polite"></div>
+    </form>
+    <div class="sub" id="acMine" style="display:grid;gap:12px" hidden>
+      <p class="note" id="acWho" style="margin:0"></p>
+      <h3 style="color:var(--crust)">طلباتي</h3>
+      <div id="acOrders" style="display:grid;gap:10px"></div>
+      <button class="btn" type="button" id="acOut" style="justify-content:center;background:#f1e3cc;color:var(--crust)">تسجيل خروج</button>
+    </div>
   </div>
 </dialog>
 
@@ -400,6 +469,7 @@ const PHONE = "";
 })();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="config.js"></script>
 <script>
 const SUPABASE_URL = SONBOLA.url;
@@ -424,9 +494,13 @@ const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
 
   let cats = [], products = new Map(), settings = null;
   let cart = store.get(CART_KEY) || {};
+  /* دخول الزبون (اختياري): لو داخل، الطلب بيتبعت بالتوكن بتاعه فـ place_order تربطه بحسابه */
+  const sb = window.supabase ? supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
+  let session = null, profile = null;
 
   async function rpc(fn, body){
-    const r = await fetch(API + "/rpc/" + fn, { method: "POST", headers: HEAD, body: JSON.stringify(body || {}) });
+    const headers = session ? { ...HEAD, Authorization: "Bearer " + session.access_token } : HEAD;
+    const r = await fetch(API + "/rpc/" + fn, { method: "POST", headers, body: JSON.stringify(body || {}) });
     const j = await r.json().catch(() => null);
     if(!r.ok) throw Object.assign(new Error((j && j.message) || r.status), { key: j && j.message });
     return j;
@@ -545,6 +619,11 @@ const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
       '<span class="step"><button type="button" data-inc="' + l.p.id + '" aria-label="زوّد">+</button><output>' + qtyText(l.q) +
       '</output><button type="button" data-dec="' + l.p.id + '" aria-label="قلّل">−</button></span></div>').join("");
     $("oAddrWrap").hidden = !t.delivery;
+    const ca = $("coAcct");
+    ca.hidden = !sb;
+    ca.innerHTML = session
+      ? "👤 داخل بـ <bdi>" + esc(session.user.email) + "</bdi>. هتلاقي الطلب في «طلباتي»."
+      : '<button type="button" class="linkish" data-acct>عندك حساب؟ ادخل</button> عشان تتابع طلبك وبياناتك تتحفظ.';
     $("sSub").textContent = money(t.sub);
     $("sFeeRow").hidden = !t.delivery;
     $("sFee").textContent = t.fee ? money(t.fee) : "مجاناً";
@@ -552,7 +631,7 @@ const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
   }
 
   $("cartOpen").addEventListener("click", () => {
-    const me = store.get(ME_KEY) || {};
+    const me = profile || store.get(ME_KEY) || {};
     if(!$("oName").value) $("oName").value = me.name || "";
     if(!$("oPhone").value) $("oPhone").value = me.phone || "";
     if(!$("oAddr").value) $("oAddr").value = me.address || "";
@@ -567,7 +646,7 @@ const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
     form.hidden = true; $("coDone").hidden = false;
     $("doneNum").textContent = number ? "#" + number : "";
     $("doneText").textContent = (total ? "الإجمالي " + money(total) + " كاش. " : "") +
-      "هنكلّمك نأكد الطلب. لو حبيت تسأل عنه، قول رقم الطلب.";
+      "هنكلّمك نأكد الطلب. " + (session ? "تابع حالته من «طلباتي» فوق." : "لو حبيت تسأل عنه، قول رقم الطلب.");
     cart = {}; saveCart(); renderMenu();
   }
 
@@ -590,6 +669,7 @@ const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
         expected_total: t.total
       }});
       store.set(ME_KEY, { name, phone, address });
+      if(session) loadProfile();
       $("oNotes").value = "";
       showDone(r.number, r.total);
     }catch(err){
@@ -610,8 +690,84 @@ const SUPABASE_PUBLISHABLE_KEY = SONBOLA.key;
     }
   });
 
+  /* ---------- حساب الزبون ---------- */
+  const acct = $("acct");
+  const STATUS = { new: "وصل، مستني تأكيد", accepted: "اتأكد وبيتجهّز", ready: "جاهز للاستلام",
+                   out_for_delivery: "خرج للتوصيل", completed: "اتسلّم", cancelled: "اتلغى" };
+  const when = d => new Intl.DateTimeFormat("ar-EG-u-nu-latn", { timeZone: "Africa/Cairo", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(new Date(d));
+  const sayAc = (t, c) => { $("acStatus").textContent = t; $("acStatus").className = "form-status " + (c || ""); };
+  let live = null;
+
+  async function loadProfile(){
+    const { data } = await sb.from("customers").select("name,phone,address").eq("id", session.user.id).maybeSingle();
+    profile = data || null;
+  }
+
+  async function loadMyOrders(){
+    const box = $("acOrders");
+    const { data, error } = await sb.from("orders")
+      .select("id,number,status,fulfillment,total,created_at,order_lines(product_name,quantity,unit_label)")
+      .eq("customer_id", session.user.id).order("created_at", { ascending: false }).limit(20);
+    if(error){ box.innerHTML = '<p class="note">مقدرناش نجيب طلباتك دلوقتي.</p>'; return; }
+    box.innerHTML = data.map(o =>
+      '<div class="my-order"><div class="mo-h"><b>#' + o.number + '</b><span class="st ' + o.status + '">' + STATUS[o.status] + '</span></div>' +
+      '<small>' + when(o.created_at) + " · " + (o.fulfillment === "delivery" ? "توصيل" : "استلام من المحل") + '</small>' +
+      '<div>' + o.order_lines.map(l => esc(l.product_name) + " " + qtyText(+l.quantity) + (l.unit_label ? " " + esc(unitShort(l.unit_label)) : "")).join("، ") + '</div>' +
+      '<div>الإجمالي <b style="color:var(--fire)">' + money(o.total) + '</b></div></div>').join("") ||
+      '<p class="note">لسه ماطلبتش حاجة وانت داخل. اطلب من المنيو وهتلاقي طلبك هنا.</p>';
+  }
+
+  function renderAcct(){
+    $("acctBtn").textContent = session ? "📦 طلباتي" : "👤 دخول";
+    $("acLogin").hidden = !!session;
+    $("acMine").hidden = !session;
+    $("acTitle").textContent = session ? "حسابي" : "ادخل بإيميلك";
+    if(session) $("acWho").innerHTML = "داخل بـ <bdi>" + esc(session.user.email) + "</bdi>";
+    if(dlg.open) renderCheckout();
+  }
+
+  function openAcct(){
+    sayAc("");
+    if(session) loadMyOrders();
+    acct.showModal();
+  }
+
+  if(sb){
+    $("acctBtn").hidden = false;
+    $("acctBtn").addEventListener("click", openAcct);
+    acct.addEventListener("click", e => { if(e.target.closest("[data-close]") || e.target === acct) acct.close(); });
+    document.addEventListener("click", e => { if(e.target.closest("[data-acct]")){ e.preventDefault(); dlg.close(); openAcct(); } });
+
+    $("acLogin").addEventListener("submit", async e => {
+      e.preventDefault();
+      const email = $("acEmail").value.trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ sayAc("اكتب إيميل صحيح.", "err"); return; }
+      $("acBtn").disabled = true; sayAc("بنبعت اللينك…");
+      const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
+      $("acBtn").disabled = false;
+      if(error){ sayAc(error.status === 429 ? "طلبت لينكات كتير ورا بعض، استنى شوية وجرّب تاني." : "مقدرناش نبعت اللينك دلوقتي، جرّب تاني بعد شوية.", "err"); return; }
+      sayAc("بعتنالك لينك على " + email + ". افتحه من نفس الموبايل أو الجهاز ده. السلة بتاعتك محفوظة.", "ok");
+    });
+
+    $("acOut").addEventListener("click", async () => { await sb.auth.signOut(); acct.close(); });
+
+    sb.auth.onAuthStateChange((event, s) => {
+      session = s;
+      if(!s){ profile = null; if(live){ sb.removeChannel(live); live = null; } renderAcct(); return; }
+      renderAcct();
+      if(event === "INITIAL_SESSION" || event === "SIGNED_IN"){
+        setTimeout(loadProfile, 0);
+        /* حالة الطلب بتتحدّث لوحدها وهو فاتح «طلباتي» */
+        if(!live) live = sb.channel("my-orders")
+          .on("postgres_changes", { event: "UPDATE", schema: "public", table: "orders", filter: "customer_id=eq." + s.user.id },
+              () => { if(acct.open) loadMyOrders(); })
+          .subscribe();
+      }
+    });
+  }
+
   load().then(() => { renderStatus(); renderMenu(); renderCartBar(); })
-        .catch(() => { $("menuList").innerHTML = '<p class="note">مقدرناش نحمّل المنيو دلوقتي. جرّب تحدّث الصفحة بعد شوية.</p>'; });
+        .catch(() => { /* المنيو الثابت اللي في الصفحة بيفضل زي ما هو */ });
 })();
 
 (function(){

@@ -5,8 +5,16 @@ A single bakery in Port Fouad that shows its menu online, takes orders from cust
 ## People
 
 **Customer** (الزبون):
-A person who places an Order or sends a Message. A Customer has no account and is identified only by the name and mobile number they enter.
+A person who places an Order or sends a Message. A Customer may order without signing in, identified only by the name and mobile number they enter.
 _Avoid_: User, client, visitor, guest
+
+**Signed-in Customer** (زبون داخل بحسابه):
+A Customer who has signed in with their email, so their Orders are linked to them and their name, mobile number and address are remembered. Signing in is never required to order.
+_Avoid_: Member, registered user, account holder
+
+**My Orders** (طلباتي):
+The list of a Signed-in Customer's own Orders with each Order's current Order Status.
+_Avoid_: Order history, account page
 
 **Admin** (الأدمن):
 A bakery staff member who signs in to the dashboard. All Admins have the same full access, and an Admin is only ever added by hand, never by signing up on the site.
